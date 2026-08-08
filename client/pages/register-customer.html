@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Register Customer | BashiKhong Water</title>
+
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/register-customer.css">
+
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- Sidebar -->
+
+        <aside class="sidebar">
+
+            <div class="sidebar-header">
+
+                <img
+                    src="../assets/logo/logo.png"
+                    alt="Logo"
+                    class="sidebar-logo">
+
+                <h2>Bashi Khong</h2>
+
+            </div>
+
+            <nav>
+
+                <ul>
+
+                    <li onclick="window.location='dashboard.html'">
+                        Dashboard
+                    </li>
+
+                    <li onclick="window.location='orders.html'">
+                        Orders
+                    </li>
+
+                    <li class="active">
+                        Customers
+                    </li>
+
+                    <li onclick="window.location='reports.html'">
+                        Reports
+                    </li>
+
+                    <li onclick="window.location='settings.html'">
+                        Settings
+                    </li>
+
+                </ul>
+
+            </nav>
+
+        </aside>
+
+        <!-- Main -->
+
+        <main class="main-content">
+
+            <header class="topbar">
+
+                <h1>Register Customer</h1>
+
+                <div class="profile">
+
+                    <img
+                        src="../assets/images/profile.png"
+                        alt="Profile">
+
+                    <span>Administrator</span>
+
+                </div>
+
+            </header>
+
+            <section class="register-card">
+
+                <form id="customerForm">
+
+                    <div class="form-group">
+
+                        <label>
+                            Customer Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="customerName"
+                            placeholder="Enter customer name"
+                            required>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label>
+                            Phone Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            placeholder="Enter phone number"
+                            required>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label>
+                            Address
+                        </label>
+
+                        <textarea
+                            id="address"
+                            rows="4"
+                            placeholder="Enter customer address"
+                            required></textarea>
+
+                    </div>
+
+                    <div class="button-group">
+
+                        <button
+                            type="submit"
+                            class="save-btn">
+
+                            Register Customer
+
+                        </button>
+
+                        <button
+                            type="reset"
+                            class="reset-btn">
+
+                            Clear
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="../js/auth.js"></script>
+    <script src="../js/register-customer.js"></script>
+
+</body>
+
+</html>

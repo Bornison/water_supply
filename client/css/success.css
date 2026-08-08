@@ -1,0 +1,161 @@
+/* ==========================================
+   SUCCESS PAGE
+========================================== */
+
+body{
+
+    margin:0;
+
+    background:#f5f7fb;
+
+    font-family:'Poppins',sans-serif;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    min-height:100vh;
+
+}
+
+/* ==========================================
+   CONTAINER
+========================================== */
+
+.success-container{
+
+    width:100%;
+
+    max-width:500px;
+
+    padding:20px;
+
+}
+
+/* ==========================================
+   CARD
+========================================== */
+
+.success-card{
+
+    background:#ffffff;
+
+    padding:40px 30px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+/* ==========================================
+   ICON
+========================================== */
+
+.success-icon{
+
+    width:90px;
+
+    height:90px;
+
+    margin:0 auto 25px;
+
+    border-radius:50%;
+
+    background:#16a34a;
+
+    color:#ffffff;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:40px;
+
+    font-weight:bold;
+
+}
+
+/* ==========================================
+   TEXT
+========================================== */
+
+.success-card h1{
+
+    color:var(--success);
+
+    margin-bottom:15px;
+
+    font-size:28px;
+
+}
+
+.success-card p{
+
+    color:var(--text-light);
+
+    line-height:1.7;
+
+    margin-bottom:30px;
+
+}
+
+/* ==========================================
+   BUTTON
+========================================== */
+
+.success-btn{
+
+    width:100%;
+
+    height:52px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:var(--primary);
+
+    color:#ffffff;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.success-btn:hover{
+
+    background:var(--primary-hover);
+
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:600px){
+
+    .success-card{
+
+        padding:30px 20px;
+
+    }
+
+    .success-card h1{
+
+        font-size:24px;
+
+    }
+
+}

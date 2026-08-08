@@ -1,0 +1,533 @@
+/* ==========================================
+   ORDERS PAGE
+========================================= */
+
+.dashboard{
+
+    display:flex;
+
+    min-height:100vh;
+
+    background:var(--background);
+
+}
+
+/* ==========================================
+   SIDEBAR
+========================================= */
+
+.sidebar{
+
+    width:260px;
+
+    background:#ffffff;
+
+    border-right:1px solid #e5e7eb;
+
+    display:flex;
+
+    flex-direction:column;
+
+    padding:25px 18px;
+
+    box-shadow:2px 0 10px rgba(0,0,0,.03);
+
+}
+
+.sidebar-header{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-bottom:40px;
+
+}
+
+.sidebar-logo{
+
+    width:55px;
+
+    height:55px;
+
+    object-fit:contain;
+
+}
+
+.sidebar-header h2{
+
+    color:var(--primary);
+
+    font-size:20px;
+
+    font-weight:700;
+
+}
+
+.sidebar ul{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+}
+
+.sidebar li{
+
+    padding:14px 18px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    color:var(--text-light);
+
+    font-weight:500;
+
+    transition:.25s;
+
+}
+
+.sidebar li:hover{
+
+    background:#eef4ff;
+
+    color:var(--primary);
+
+}
+
+.sidebar li.active{
+
+    background:var(--primary);
+
+    color:#ffffff;
+
+}
+
+/* ==========================================
+   MAIN
+========================================= */
+
+.main-content{
+
+    flex:1;
+
+    padding:35px;
+
+}
+
+/* ==========================================
+   HEADER
+========================================= */
+
+.topbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:30px;
+
+}
+
+.topbar h1{
+
+    font-size:30px;
+
+    color:var(--text);
+
+}
+
+.profile{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.profile img{
+
+    width:45px;
+
+    height:45px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+}
+
+.profile span{
+
+    font-weight:600;
+
+}
+
+/* ==========================================
+   SEARCH
+========================================= */
+
+.search-box{
+
+    margin-bottom:25px;
+
+}
+
+.search-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:16px;
+
+    flex-wrap:wrap;
+
+}
+
+.search-box input{
+
+    width:100%;
+
+    max-width:420px;
+
+    height:48px;
+
+    padding:0 16px;
+
+    border:1px solid var(--border);
+
+    border-radius:10px;
+
+    background:#ffffff;
+
+    font-size:15px;
+
+}
+
+.search-box input:focus{
+
+    border-color:var(--primary);
+
+    box-shadow:0 0 0 3px rgba(37,99,235,.12);
+
+}
+
+.page-actions{
+
+    display:flex;
+
+    gap:12px;
+
+    flex-wrap:wrap;
+
+    align-items:center;
+
+}
+
+.status-filters{
+
+    display:flex;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+}
+
+.status-btn,
+.refresh-btn,
+.action-button{
+
+    border:1px solid var(--border);
+
+    background:#ffffff;
+
+    color:var(--text);
+
+    border-radius:10px;
+
+    padding:10px 16px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    font-weight:600;
+
+}
+
+.status-btn.active,
+.status-btn:hover,
+.refresh-btn:hover,
+.action-button:hover{
+
+    background:var(--primary);
+
+    color:#ffffff;
+
+    border-color:var(--primary);
+
+}
+
+.refresh-btn{
+
+    min-width:120px;
+
+}
+
+/* ==========================================
+   TABLE
+========================================= */
+
+.orders-table.card{
+
+    background:#ffffff;
+
+    border-radius:16px;
+
+    padding:24px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.05);
+
+}
+
+.table-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:18px;
+
+}
+
+.table-header h2{
+
+    font-size:22px;
+
+    color:var(--text);
+
+}
+
+.orders-message{
+
+    margin-bottom:15px;
+
+    color:var(--text-light);
+
+    font-size:15px;
+
+}
+
+.orders-message.loading{
+
+    color:var(--primary);
+
+}
+
+.orders-message.error{
+
+    color:#dc2626;
+
+}
+
+.orders-message.empty{
+
+    color:var(--text-light);
+
+}
+
+.table-responsive{
+
+    overflow-x:auto;
+
+}
+
+.orders-table table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    min-width:900px;
+
+}
+
+.orders-table th,
+.orders-table td{
+
+    padding:16px 14px;
+
+    text-align:left;
+
+    border-bottom:1px solid var(--border);
+
+    color:var(--text);
+
+    font-size:14px;
+
+}
+
+.orders-table th{
+
+    font-weight:700;
+
+    color:var(--text-light);
+
+}
+
+.table-actions{
+
+    display:flex;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+}
+
+.action-button.view-btn{
+
+    background:#eef2ff;
+
+    color:#4338ca;
+
+    border-color:#c7d2fe;
+
+}
+
+.action-button.deliver-action{
+
+    background:#d1fae5;
+
+    color:#166534;
+
+    border-color:#86efac;
+
+}
+
+.status-pill{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    padding:8px 14px;
+
+    border-radius:30px;
+
+    font-weight:700;
+
+    font-size:13px;
+
+}
+
+.status-pill.pending{
+
+    background:#fff7e6;
+
+    color:#d97706;
+
+}
+
+.status-pill.delivered{
+
+    background:#ecfdf5;
+
+    color:#15803d;
+
+}
+
+.status-pill.cancelled{
+
+    background:#fee2e2;
+
+    color:#b91c1c;
+
+}
+
+.status-pill.status-default{
+
+    background:#e5e7eb;
+
+    color:#374151;
+
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================= */
+
+@media(max-width:1024px){
+
+    .orders-table table{
+
+        min-width:750px;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .dashboard{
+
+        flex-direction:column;
+
+    }
+
+    .sidebar{
+
+        width:100%;
+
+        border-right:none;
+
+        border-bottom:1px solid #e5e7eb;
+
+    }
+
+    .main-content{
+
+        padding:20px;
+
+    }
+
+    .topbar{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:15px;
+
+    }
+
+    .search-row{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+    .orders-table table{
+
+        min-width:100%;
+
+    }
+
+}

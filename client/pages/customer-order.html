@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,
+                   maximum-scale=1.0, user-scalable=no">
+
+    <title>Bashi Khong Water Supply</title>
+
+    <link rel="stylesheet" href="../css/customer.css">
+</head>
+
+<body>
+
+<div class="customer-page">
+
+    <!-- ==============================
+         HEADER
+    =============================== -->
+    <header class="customer-header">
+
+        <button
+            id="customerBackBtn"
+            class="back-button"
+            type="button"
+            aria-label="Back">
+            ←
+        </button>
+
+        <div class="header-title">
+            Bashi Khong Water Supply
+        </div>
+
+    </header>
+
+
+    <!-- ==============================
+         MAIN CUSTOMER ORDER PAGE
+    =============================== -->
+    <main class="customer-main">
+
+        <!-- LOGO -->
+        <section class="brand-section">
+
+            <img
+                src="../assets/logo/logo.png"
+                alt="Bashi Khong Water Supply"
+                class="customer-logo">
+
+        </section>
+
+
+        <!-- WATER SELECTION -->
+        <section class="water-section">
+
+            <div class="section-heading">
+
+                <h1>Select Water Type</h1>
+
+                <p>
+                    Choose the water you need and adjust the quantity.
+                </p>
+
+            </div>
+
+
+            <!-- PRODUCTS WILL BE LOADED FROM EXISTING API -->
+            <div
+                id="productGrid"
+                class="product-grid">
+            </div>
+
+
+            <!-- ==============================
+                 CURRENT SELECTION
+            =============================== -->
+
+            <div
+                id="cartSection"
+                class="customer-cart hidden">
+
+                <div class="cart-heading">
+                    <h2>Your Selection</h2>
+                </div>
+
+                <div id="cartItems"></div>
+
+                <div class="cart-total-row">
+
+                    <span>Total Items</span>
+
+                    <strong id="totalItems">0</strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- ==============================
+                 EMERGENCY ORDER
+            =============================== -->
+
+            <div
+                id="emergencySection"
+                class="emergency-card">
+
+                <div class="emergency-content">
+
+                    <div class="emergency-badge">
+                        🚨 EMERGENCY ORDER
+                    </div>
+
+                    <p class="emergency-question">
+                        Need water urgently?
+                    </p>
+
+                    <p class="emergency-description">
+                        Deliver as soon as possible.
+                    </p>
+
+                </div>
+
+                <button
+                    id="toggleEmergencyBtn"
+                    class="emergency-toggle"
+                    type="button">
+
+                    Enable
+
+                </button>
+
+            </div>
+
+
+            <!-- ==============================
+                 PLACE ORDER
+            =============================== -->
+
+            <button
+                id="placeOrderBtn"
+                class="place-order-button"
+                type="button"
+                disabled>
+
+                Place Order
+
+            </button>
+
+
+            <p
+                id="orderMessage"
+                class="order-message hidden">
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <!-- ==============================
+         SUCCESS SCREEN
+    =============================== -->
+
+    <section
+        id="successScreen"
+        class="customer-screen hidden">
+
+        <div class="success-content">
+
+            <div class="success-icon">
+                ✓
+            </div>
+
+            <h1>
+                Order Placed
+                <br>
+                Successfully!
+            </h1>
+
+            <p>
+                Thank you for your order.
+            </p>
+
+            <button
+                id="viewStatusBtn"
+                class="secondary-action-button"
+                type="button">
+
+                View Order Status
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==============================
+         ORDER STATUS
+    =============================== -->
+
+    <section
+        id="statusScreen"
+        class="customer-screen hidden">
+
+        <div class="status-content">
+
+            <h1>Order Status</h1>
+
+            <div
+                id="statusEmergencyBadge"
+                class="status-emergency-badge hidden">
+
+                🚨 EMERGENCY ORDER
+
+            </div>
+
+
+            <div
+                id="timelineSteps"
+                class="order-timeline">
+
+            </div>
+
+
+            <p
+                id="statusDetailText"
+                class="status-message">
+
+                We will update your order as soon as
+                the supplier confirms it.
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==============================
+         SUPPORT BAR
+    =============================== -->
+
+    <footer class="support-bar">
+
+        <div class="support-contact">
+
+            <span class="support-label">
+                Call Supplier
+            </span>
+
+            <a
+                href="tel:6009065856"
+                class="support-number">
+
+                6009065856
+
+            </a>
+
+        </div>
+
+
+        <button
+            id="helpBtn"
+            class="help-button"
+            type="button">
+
+            Help ?
+
+        </button>
+
+    </footer>
+
+
+</div>
+
+
+<script src="../js/customer.js"></script>
+
+</body>
+</html>

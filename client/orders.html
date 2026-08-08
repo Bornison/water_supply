@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Orders | BashiKhong Water</title>
+
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/orders.css">
+
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- Sidebar -->
+
+        <aside class="sidebar">
+
+            <div class="sidebar-header">
+
+                <img
+                    src="../assets/logo/logo.png"
+                    alt="Logo"
+                    class="sidebar-logo">
+
+                <h2>BashiKhong</h2>
+
+            </div>
+
+            <nav>
+
+                <ul>
+
+                    <li onclick="window.location='dashboard.html'">
+                        Dashboard
+                    </li>
+
+                    <li class="active">
+                        Orders
+                    </li>
+
+                    <li onclick="window.location='customers.html'">
+                        Customers
+                    </li>
+
+                    <li onclick="window.location='reports.html'">
+                        Reports
+                    </li>
+
+                    <li onclick="window.location='settings.html'">
+                        Settings
+                    </li>
+
+                </ul>
+
+            </nav>
+
+        </aside>
+
+        <!-- Main Content -->
+
+        <main class="main-content">
+
+            <!-- Header -->
+
+            <header class="topbar">
+
+                <h1>Orders</h1>
+
+                <div class="profile">
+
+                    <img
+                        src="../assets/images/profile.png"
+                        alt="Profile">
+
+                    <span>Administrator</span>
+
+                </div>
+
+            </header>
+
+            <!-- Search -->
+
+            <section class="search-box">
+
+                <input
+                    type="text"
+                    id="searchOrder"
+                    placeholder="Search customer...">
+
+            </section>
+
+            <!-- Orders -->
+
+            <section
+                class="orders-container"
+                id="ordersContainer">
+
+                <!-- Order Card -->
+
+                <div class="order-card">
+
+                    <div class="order-header">
+
+                        <h2>Rahul Sharma</h2>
+
+                        <span class="pending">
+                            Pending
+                        </span>
+
+                    </div>
+
+                    <div class="order-body">
+
+                        <p>
+
+                            <strong>Product :</strong>
+
+                            20L Jar
+
+                        </p>
+
+                        <p>
+
+                            <strong>Quantity :</strong>
+
+                            2
+
+                        </p>
+
+                        <p>
+
+                            <strong>Address :</strong>
+
+                            Imphal West
+
+                        </p>
+
+                        <p>
+
+                            <strong>Ordered :</strong>
+
+                            Today 10:30 AM
+
+                        </p>
+
+                    </div>
+
+                    <div class="order-footer">
+
+                        <button
+                            class="deliver-btn">
+
+                            Mark Delivered
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!-- Order Card -->
+
+                <div class="order-card">
+
+                    <div class="order-header">
+
+                        <h2>David Singh</h2>
+
+                        <span class="delivered">
+                            Delivered
+                        </span>
+
+                    </div>
+
+                    <div class="order-body">
+
+                        <p>
+
+                            <strong>Product :</strong>
+
+                            1L Bottle
+
+                        </p>
+
+                        <p>
+
+                            <strong>Quantity :</strong>
+
+                            5
+
+                        </p>
+
+                        <p>
+
+                            <strong>Address :</strong>
+
+                            Thoubal
+
+                        </p>
+
+                        <p>
+
+                            <strong>Ordered :</strong>
+
+                            Yesterday
+
+                        </p>
+
+                    </div>
+
+                    <div class="order-footer">
+
+                        <button
+                            disabled>
+
+                            Delivered
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="../js/auth.js"></script>
+    <script src="../js/orders.js"></script>
+
+</body>
+
+</html>

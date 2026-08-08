@@ -1,0 +1,183 @@
+/* ==========================================
+   REGISTER CUSTOMER
+========================================== */
+
+.dashboard{
+    display:flex;
+    min-height:100vh;
+    background:var(--background);
+}
+
+/* Sidebar */
+
+.sidebar{
+    width:260px;
+    background:#fff;
+    border-right:1px solid #e5e7eb;
+    padding:25px 18px;
+}
+
+.sidebar-header{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:40px;
+}
+
+.sidebar-logo{
+    width:55px;
+    height:55px;
+}
+
+.sidebar-header h2{
+    color:var(--primary);
+}
+
+.sidebar ul{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.sidebar li{
+    padding:14px 18px;
+    border-radius:10px;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.sidebar li:hover{
+    background:#eef4ff;
+    color:var(--primary);
+}
+
+.sidebar li.active{
+    background:var(--primary);
+    color:#fff;
+}
+
+/* Main */
+
+.main-content{
+    flex:1;
+    padding:35px;
+}
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.profile{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.profile img{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+}
+
+/* Card */
+
+.register-card{
+    background:#fff;
+    border-radius:16px;
+    padding:30px;
+    box-shadow:0 8px 20px rgba(0,0,0,.05);
+}
+
+/* Form */
+
+.form-group{
+    margin-bottom:22px;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:600;
+}
+
+.form-group input,
+.form-group textarea{
+
+    width:100%;
+    padding:14px;
+    border:1px solid var(--border);
+    border-radius:10px;
+    font-size:15px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus{
+
+    border-color:var(--primary);
+
+}
+
+textarea{
+    resize:vertical;
+}
+
+/* Buttons */
+
+.button-group{
+
+    display:flex;
+    gap:15px;
+}
+
+.save-btn{
+
+    flex:1;
+    background:var(--primary);
+    color:#fff;
+    padding:14px;
+    border-radius:10px;
+}
+
+.save-btn:hover{
+
+    background:var(--primary-hover);
+}
+
+.reset-btn{
+
+    flex:1;
+    background:#e5e7eb;
+    color:#111827;
+    padding:14px;
+    border-radius:10px;
+}
+
+.reset-btn:hover{
+
+    background:#d1d5db;
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+    .dashboard{
+        flex-direction:column;
+    }
+
+    .sidebar{
+        width:100%;
+    }
+
+    .main-content{
+        padding:20px;
+    }
+
+    .button-group{
+        flex-direction:column;
+    }
+
+}

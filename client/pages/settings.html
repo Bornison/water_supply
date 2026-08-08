@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Settings | BashiKhong Water</title>
+
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/settings.css">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-header">
+
+            <img
+                src="../assets/logo/logo.png"
+                alt="Logo"
+                class="sidebar-logo">
+
+            <h2>BashiKhong</h2>
+
+        </div>
+
+        <nav>
+
+            <ul>
+
+                <li onclick="window.location='dashboard.html'">
+                    Dashboard
+                </li>
+
+                <li onclick="window.location='orders.html'">
+                    Orders
+                </li>
+
+                <li onclick="window.location='customers.html'">
+                    Customers
+                </li>
+
+                <li onclick="window.location='reports.html'">
+                    Reports
+                </li>
+
+                <li class="active">
+                    Settings
+                </li>
+
+            </ul>
+
+        </nav>
+
+    </aside>
+
+    <!-- Main Content -->
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <h1>Settings</h1>
+
+            <div class="profile">
+
+                <img
+                    src="../assets/images/profile.png"
+                    alt="Profile">
+
+                <span>Administrator</span>
+
+            </div>
+
+        </header>
+
+        <!-- Business Information -->
+
+        <section class="settings-card">
+
+            <h2>Business Information</h2>
+
+            <form id="settingsForm">
+
+                <div class="form-group">
+
+                    <label>Business Name</label>
+
+                    <input
+                        type="text"
+                        id="businessName"
+                        placeholder="Business Name">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Phone Number</label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        placeholder="Phone Number">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Email</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Email">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="address">Business Address</label>
+
+                    <textarea
+                        id="address"
+                        name="address"
+                        rows="4"
+                        placeholder="Business Address"
+                        title="Business Address"></textarea>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="profileImage">Profile Picture</label>
+
+                    <input
+                        type="file"
+                        id="profileImage"
+                        name="profileImage"
+                        accept="image/*"
+                        title="Profile Picture">
+
+                </div>
+
+                <div class="button-group">
+
+                    <button
+                        type="submit"
+                        class="save-btn">
+
+                        Save Changes
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+        <!-- Products -->
+
+        <section class="settings-card">
+
+            <div class="section-header">
+
+                <h2>Products</h2>
+
+                <button
+                    id="addProductBtn"
+                    class="add-btn">
+
+                    + Add Product
+
+                </button>
+
+            </div>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Product</th>
+
+                        <th>Volume</th>
+
+                        <th>Unit</th>
+
+                        <th>Status</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="productTable">
+
+                    <tr>
+
+                        <td>20L Jar</td>
+
+                        <td>20</td>
+
+                        <td>Liter</td>
+
+                        <td>Active</td>
+
+                        <td>
+
+                            <button class="edit-btn">
+                                Edit
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>1L Bottle</td>
+
+                        <td>1</td>
+
+                        <td>Liter</td>
+
+                        <td>Active</td>
+
+                        <td>
+
+                            <button class="edit-btn">
+                                Edit
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
+</div>
+    <script src="../js/auth.js"></script>
+    <script src="../js/settings.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Customers | BashiKhong Water</title>
+
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/customers.css">
+
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- Sidebar -->
+
+        <aside class="sidebar">
+
+            <div class="sidebar-header">
+
+                <img
+                    src="../assets/logo/logo.png"
+                    alt="Logo"
+                    class="sidebar-logo">
+
+                <h2>BashiKhong</h2>
+
+            </div>
+
+            <nav>
+
+                <ul>
+
+                    <li onclick="window.location='dashboard.html'">
+                        Dashboard
+                    </li>
+
+                    <li onclick="window.location='orders.html'">
+                        Orders
+                    </li>
+
+                    <li class="active">
+                        Customers
+                    </li>
+
+                    <li onclick="window.location='reports.html'">
+                        Reports
+                    </li>
+
+                    <li onclick="window.location='settings.html'">
+                        Settings
+                    </li>
+
+                </ul>
+
+            </nav>
+
+        </aside>
+
+        <!-- Main Content -->
+
+        <main class="main-content">
+
+            <!-- Header -->
+
+            <header class="topbar">
+
+                <h1>Customers</h1>
+
+                <div class="profile">
+
+                    <img
+                        src="../assets/images/profile.png"
+                        alt="Profile">
+
+                    <span>Administrator</span>
+
+                </div>
+
+            </header>
+
+            <!-- Top Actions -->
+
+            <section class="customer-actions">
+
+                <input
+                    type="text"
+                    id="searchCustomer"
+                    placeholder="Search customer...">
+
+                <button
+                    id="addCustomerBtn">
+
+                    + Register Customer
+
+                </button>
+
+            </section>
+
+            <!-- Customer List -->
+
+            <section
+                class="customers-container"
+                id="customersContainer">
+
+                <!-- Customer Card -->
+
+                <div class="customer-card">
+
+                    <div class="customer-info">
+
+                        <h2>Rahul Sharma</h2>
+
+                        <p>
+                            📞 9876543210
+                        </p>
+
+                        <p>
+                            📍 Imphal West
+                        </p>
+
+                        <p>
+                            🆔 CUST000001
+                        </p>
+
+                    </div>
+
+                    <div class="customer-actions-btn">
+
+                        <button class="view-btn">
+
+                            View QR
+
+                        </button>
+
+                        <button class="edit-btn">
+
+                            Edit
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!-- Customer Card -->
+
+                <div class="customer-card">
+
+                    <div class="customer-info">
+
+                        <h2>David Singh</h2>
+
+                        <p>
+                            📞 9123456789
+                        </p>
+
+                        <p>
+                            📍 Thoubal
+                        </p>
+
+                        <p>
+                            🆔 CUST000002
+                        </p>
+
+                    </div>
+
+                    <div class="customer-actions-btn">
+
+                        <button class="view-btn">
+
+                            View QR
+
+                        </button>
+
+                        <button class="edit-btn">
+
+                            Edit
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="../js/auth.js"></script>
+    <script src="../js/customers.js"></script>
+
+</body>
+
+</html>

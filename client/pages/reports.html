@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Reports | BashiKhong Water</title>
+
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/reports.css">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-header">
+
+            <img
+                src="../assets/logo/logo.png"
+                alt="Logo"
+                class="sidebar-logo">
+
+            <h2>BashiKhong</h2>
+
+        </div>
+
+        <nav>
+
+            <ul>
+
+                <li onclick="window.location='dashboard.html'">
+                    Dashboard
+                </li>
+
+                <li onclick="window.location='orders.html'">
+                    Orders
+                </li>
+
+                <li onclick="window.location='customers.html'">
+                    Customers
+                </li>
+
+                <li class="active">
+                    Reports
+                </li>
+
+                <li onclick="window.location='settings.html'">
+                    Settings
+                </li>
+
+            </ul>
+
+        </nav>
+
+    </aside>
+
+    <!-- Main -->
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <h1>Reports</h1>
+
+            <div class="profile">
+
+                <img
+                    src="../assets/images/profile.png"
+                    alt="Profile">
+
+                <span>Administrator</span>
+
+            </div>
+
+        </header>
+
+        <!-- Report Cards -->
+
+        <section class="report-summary">
+
+            <div class="report-card">
+
+                <h3>Today's Orders</h3>
+
+                <h2 id="todayOrders">
+                    12
+                </h2>
+
+            </div>
+
+            <div class="report-card">
+
+                <h3>This Week</h3>
+
+                <h2 id="weekOrders">
+                    78
+                </h2>
+
+            </div>
+
+            <div class="report-card">
+
+                <h3>This Month</h3>
+
+                <h2 id="monthOrders">
+                    312
+                </h2>
+
+            </div>
+
+            <div class="report-card">
+
+                <h3>This Year</h3>
+
+                <h2 id="yearOrders">
+                    3,281
+                </h2>
+
+            </div>
+
+        </section>
+
+        <!-- Report Table -->
+
+        <section class="report-table card">
+
+            <h2>Recent Report</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Date</th>
+
+                        <th>Orders</th>
+
+                        <th>Delivered</th>
+
+                        <th>Pending</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>Today</td>
+
+                        <td>12</td>
+
+                        <td>7</td>
+
+                        <td>5</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>Yesterday</td>
+
+                        <td>18</td>
+
+                        <td>18</td>
+
+                        <td>0</td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="../js/auth.js"></script>
+<script src="../js/reports.js"></script>
+
+</body>
+
+</html>

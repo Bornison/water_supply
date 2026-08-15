@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <link rel="manifest" href="/manifest.json">
 
     <meta charset="UTF-8">
 
@@ -207,6 +208,14 @@
     <script src="../js/mobile-nav.js"></script>
     <script src="../js/dashboard.js"></script>
 
-</body>
+    <script>
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", () => {
+                navigator.serviceWorker.register("/sw.js")
+                    .catch((error) => console.error("Service Worker registration failed:", error));
+            });
+        }
+    </script></body>
 
 </html>
+

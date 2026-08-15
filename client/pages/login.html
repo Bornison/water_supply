@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <link rel="manifest" href="/manifest.json">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
@@ -70,5 +71,16 @@
 
     <script src="../js/login.js"></script>
 
+    <script>
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", () => {
+                navigator.serviceWorker.register("/sw.js")
+                    .catch((error) => console.error("Service Worker registration failed:", error));
+            });
+        }
+    </script>
 </body>
 </html>
+
+
+

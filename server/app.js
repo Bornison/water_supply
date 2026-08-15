@@ -13,7 +13,18 @@ const productRoutes=require("./routes/product.routes");
 const settingsRoutes=require("./routes/settings.routes");
 const reportRoutes=require("./routes/report.routes");
 
+const path = require("path");
+
 const app = express();
+
+/* ==========================================
+   STATIC CLIENT FILES SERVING
+========================================== */
+app.use(express.static(path.join(__dirname, "../client")));
+app.use("/pages", express.static(path.join(__dirname, "../client/pages")));
+app.use("/assets", express.static(path.join(__dirname, "../client/assets")));
+app.use("/css", express.static(path.join(__dirname, "../client/css")));
+app.use("/js", express.static(path.join(__dirname, "../client/js")));
 
 /* ==========================================
    MIDDLEWARE
@@ -26,6 +37,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(morgan("dev"));
+
 app.use(
 
     "/api/orders",

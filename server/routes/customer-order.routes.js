@@ -6,6 +6,11 @@ const customerOrderController = require("../controllers/customer-order.controlle
    CUSTOMER ORDER ROUTES
 ========================================== */
 router.get(
+    "/default-customer",
+    customerOrderController.getDefaultCustomer
+);
+
+router.get(
     "/customer/:customerCode",
     customerOrderController.getCustomerByCode
 );

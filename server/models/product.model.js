@@ -174,7 +174,29 @@ async function updateStatus(id,active){
 
 }
 
-module.exports={
+/* ==========================================
+   DELETE PRODUCT
+========================================== */
+
+async function deleteProduct(id) {
+
+    const query = `
+
+        DELETE FROM products
+
+        WHERE id = $1
+
+        RETURNING *
+
+    `;
+
+    const result = await pool.query(query, [id]);
+
+    return result.rows[0];
+
+}
+
+module.exports = {
 
     getProducts,
 
@@ -186,6 +208,8 @@ module.exports={
 
     updateProduct,
 
-    updateStatus
+    updateStatus,
 
-};
+    deleteProduct
+
+};

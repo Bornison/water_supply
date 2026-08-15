@@ -1,11 +1,11 @@
 const Customer = require("../models/customer.model");
 const Product = require("../models/product.model");
 const Order = require("../models/order.model");
+const pool = require("../config/db");
 
 /* ==========================================
    GET CUSTOMER BY CODE
 ========================================== */
-
 async function getCustomerByCode(req, res) {
     try {
         const customerCode = req.params.customerCode;
@@ -48,7 +48,6 @@ async function getCustomerByCode(req, res) {
 /* ==========================================
    GET ACTIVE PRODUCTS
 ========================================== */
-
 async function getProducts(req, res) {
     try {
         const products = await Product.getActiveCustomerProducts();
@@ -68,7 +67,6 @@ async function getProducts(req, res) {
 /* ==========================================
    CREATE ORDER
 ========================================== */
-
 async function createOrder(req, res) {
     try {
         const { customer_id, product_id, quantity, items, emergency = false } = req.body;
@@ -88,6 +86,7 @@ async function createOrder(req, res) {
             product_id: Number(item.product_id),
             quantity: Number(item.quantity)
         }));
+
         if (!normalizedItems.length || normalizedItems.some(item => !Number.isInteger(item.product_id) || item.product_id <= 0 || !Number.isInteger(item.quantity) || item.quantity <= 0)) {
             return res.status(400).json({ success: false, message: "Each order item requires a valid product_id and quantity" });
         }
@@ -103,7 +102,7 @@ async function createOrder(req, res) {
         for (const item of normalizedItems) {
             const product = await Product.getProduct(item.product_id);
             if (!product || !product.active) {
-                return res.status(404).json({ success: false, message: "Product not found" });
+                return res.status(404).json({ success: false, message: "Product not found or inactive" });
             }
         }
 
@@ -134,7 +133,6 @@ async function createOrder(req, res) {
 /* ==========================================
    GET ORDER DETAILS
 ========================================== */
-
 async function getOrderDetails(req, res) {
     try {
         const orderId = Number(req.params.orderId);
@@ -169,7 +167,6 @@ async function getOrderDetails(req, res) {
 /* ==========================================
    GET ORDER STATUS
 ========================================== */
-
 async function getOrderStatus(req, res) {
     try {
         const orderId = Number(req.params.orderId);
@@ -203,10 +200,43 @@ async function getOrderStatus(req, res) {
     }
 }
 
+/* ==========================================
+   GET DEFAULT / LATEST ACTIVE CUSTOMER
+========================================== */
+async function getDefaultCustomer(req, res) {
+    try {
+        const query = `
+            SELECT id, customer_code, name, phone, address
+            FROM customers
+            WHERE active = TRUE
+            ORDER BY id DESC
+            LIMIT 1
+        `;
+        const result = await pool.query(query);
+        if (result.rows.length === 0) {
+            return res.status(404).json({
+                success: false,
+                message: "No active customer found"
+            });
+        }
+        res.json({
+            success: true,
+            data: result.rows[0]
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            success: false,
+            message: "Internal Server Error"
+        });
+    }
+}
+
 module.exports = {
     getCustomerByCode,
     getProducts,
     createOrder,
     getOrderDetails,
-    getOrderStatus
+    getOrderStatus,
+    getDefaultCustomer
 };

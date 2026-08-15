@@ -2,281 +2,442 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0,
-                   maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>G.T Water | Order Online</title>
 
-    <title>Bashi Khong Water Supply</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap-grid.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/customer.css">
 </head>
-
 <body>
 
-<div class="customer-page">
+<div class="app-container">
 
-    <!-- ==============================
-         HEADER
-    =============================== -->
-    <header class="customer-header">
-
-        <button
-            id="customerBackBtn"
-            class="back-button"
-            type="button"
-            aria-label="Back">
-            ←
+    <!-- ==========================================
+         TOP APP HEADER
+    ========================================== -->
+    <header class="app-header" id="appHeader">
+        <button id="headerBackBtn" class="header-back-btn hidden" type="button" aria-label="Go Back">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
         </button>
 
-        <div class="header-title">
-            Bashi Khong Water Supply
+        <div class="header-brand">
+            <div class="brand-droplet-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="#1769e8">
+                    <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+                </svg>
+            </div>
+            <div class="brand-text">
+                <span class="brand-name">G.T Water</span>
+                <span class="brand-sub">Supply</span>
+            </div>
         </div>
 
+        <button id="headerHelpBtn" class="header-help-btn" type="button" aria-label="Help">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+        </button>
     </header>
 
+    <!-- MAIN STEP CONTAINER -->
+    <main class="main-content">
 
-    <!-- ==============================
-         MAIN CUSTOMER ORDER PAGE
-    =============================== -->
-    <main class="customer-main">
+        <!-- ==========================================
+             SCREEN 1: WELCOME / HERO SCREEN (STEP 2)
+        ========================================== -->
+        <section id="stepWelcome" class="step-view active">
+            <div class="welcome-card">
+                <div class="hero-bottle-wrap">
+                    <img src="../assets/images/20litre.png" alt="Pure Water Jar" class="hero-bottle-img" id="welcomeHeroImg">
+                </div>
 
-        <!-- LOGO -->
-        <section class="brand-section">
+                <h1 class="welcome-title">Need Water Today?</h1>
+                <p class="welcome-subtitle">
+                    Choose your water type and quantity to place an order.
+                </p>
 
-            <img
-                src="../assets/logo/logo.png"
-                alt="Bashi Khong Water Supply"
-                class="customer-logo">
+                <div class="info-banner">
+                    <div class="info-banner-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1769e8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                    </div>
+                    <p class="info-banner-text">We deliver fresh & clean drinking water to your doorstep.</p>
+                </div>
 
+                <button id="startOrderBtn" class="btn-primary" type="button">
+                    Order Water Now
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </button>
+            </div>
         </section>
 
 
-        <!-- WATER SELECTION -->
-        <section class="water-section">
-
-            <div class="section-heading">
-
-                <h1>Select Water Type</h1>
-
-                <p>
-                    Choose the water you need and adjust the quantity.
-                </p>
-
+        <!-- ==========================================
+             SCREEN 2: SELECT WATER TYPE (STEP 3)
+        ========================================== -->
+        <section id="stepWaterType" class="step-view">
+            <div class="step-header">
+                <h2 class="step-title">Select Water Products</h2>
+                <p class="step-desc">Choose one or multiple items to add to your order.</p>
             </div>
 
-
-            <!-- PRODUCTS WILL BE LOADED FROM EXISTING API -->
-            <div
-                id="productGrid"
-                class="product-grid">
+            <!-- Product list populated dynamically -->
+            <div id="waterTypeList" class="water-type-list">
+                <!-- Dynamic cards with multi-item steppers rendered here -->
             </div>
 
+            <!-- Bottom Floating Review Cart Bar -->
+            <div id="waterTypeBottomReviewBar" class="cart-floating-bar hidden">
+                <div class="cart-bar-info">
+                    <span class="cart-bar-icon">🛒</span>
+                    <div>
+                        <strong id="cartTotalItemsCount">0 Items</strong>
+                        <span class="cart-bar-subtitle">in your order</span>
+                    </div>
+                </div>
+                <button id="cartReviewOrderBtn" class="btn-cart-review" type="button">
+                    Review Order
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </button>
+            </div>
+        </section>
 
-            <!-- ==============================
-                 CURRENT SELECTION
-            =============================== -->
 
-            <div
-                id="cartSection"
-                class="customer-cart hidden">
+        <!-- ==========================================
+             SCREEN 3: CHOOSE QUANTITY (STEP 4)
+        ========================================== -->
+        <section id="stepQuantity" class="step-view">
+            <div class="step-header">
+                <h2 class="step-title">Select Quantity</h2>
+                <p class="step-desc">Select how many you need.</p>
+            </div>
 
-                <div class="cart-heading">
-                    <h2>Your Selection</h2>
+            <div class="quantity-card">
+                <div class="qty-product-preview">
+                    <img id="qtyProductImg" src="../assets/images/20litre.png" alt="Selected Water" class="qty-preview-img">
                 </div>
 
-                <div id="cartItems"></div>
+                <div class="counter-container">
+                    <button id="qtyMinusBtn" class="qty-circle-btn minus" type="button" aria-label="Decrease quantity">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                    </button>
 
-                <div class="cart-total-row">
-
-                    <span>Total Items</span>
-
-                    <strong id="totalItems">0</strong>
-
-                </div>
-
-            </div>
-
-
-            <!-- ==============================
-                 EMERGENCY ORDER
-            =============================== -->
-
-            <div
-                id="emergencySection"
-                class="emergency-card">
-
-                <div class="emergency-content">
-
-                    <div class="emergency-badge">
-                        🚨 EMERGENCY ORDER
+                    <div class="qty-display">
+                        <span id="qtyNumber" class="qty-number">1</span>
+                        <span id="qtyProductName" class="qty-product-label">20L Jar</span>
                     </div>
 
-                    <p class="emergency-question">
-                        Need water urgently?
-                    </p>
-
-                    <p class="emergency-description">
-                        Deliver as soon as possible.
-                    </p>
-
+                    <button id="qtyPlusBtn" class="qty-circle-btn plus" type="button" aria-label="Increase quantity">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                    </button>
                 </div>
 
-                <button
-                    id="toggleEmergencyBtn"
-                    class="emergency-toggle"
-                    type="button">
+                <div class="info-banner qty-info-banner">
+                    <p class="info-banner-text" id="qtyHelperText">You can order multiple jars or bottles together.</p>
+                </div>
 
-                    Enable
+                <div class="qty-actions-row">
+                    <button id="qtyAddMoreBtn" class="btn-secondary" type="button">
+                        + Add More Products
+                    </button>
+                    <button id="proceedToSummaryBtn" class="btn-primary" type="button">
+                        Review Order
+                    </button>
+                </div>
+            </div>
+        </section>
 
-                </button>
 
+        <!-- ==========================================
+             SCREEN 4: PLACE ORDER / ORDER SUMMARY (STEP 5)
+        ========================================== -->
+        <section id="stepSummary" class="step-view">
+            <div class="step-header">
+                <h2 class="step-title">Order Summary</h2>
+                <p class="step-desc">Review your selected items and place your order.</p>
             </div>
 
+            <div class="summary-card">
+                <div id="summaryItemsContainer" class="summary-items">
+                    <!-- Populated dynamically with multiple items -->
+                </div>
 
-            <!-- ==============================
-                 PLACE ORDER
-            =============================== -->
+                <div class="summary-add-more-row">
+                    <button id="addMoreItemsBtn" class="btn-add-more" type="button">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                        <span>+ Add More Bottles / Jars</span>
+                    </button>
+                </div>
 
-            <button
-                id="placeOrderBtn"
-                class="place-order-button"
-                type="button"
-                disabled>
+                <div class="summary-total-row">
+                    <span class="total-label">Total Items</span>
+                    <span id="summaryTotalCount" class="total-value">1</span>
+                </div>
 
-                Place Order
+                <!-- Emergency Option Toggle -->
+                <div class="emergency-option-card" id="emergencyToggleCard">
+                    <div class="emergency-option-text">
+                        <div class="emergency-tag">
+                            <span>🚨 Urgent</span>
+                        </div>
+                        <strong>Emergency Delivery?</strong>
+                        <p>Need this delivered as soon as possible</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="emergencyCheckbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
 
-            </button>
+                <button id="submitOrderBtn" class="btn-success" type="button">
+                    Place Order
+                </button>
+
+                <p id="orderErrorMessage" class="error-msg hidden"></p>
+
+                <div class="security-footer">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                    <span>Your order is safe and secure</span>
+                </div>
+            </div>
+        </section>
 
 
-            <p
-                id="orderMessage"
-                class="order-message hidden">
-            </p>
+        <!-- ==========================================
+             SCREEN 5: HELP & SUPPORT (STEP 6)
+        ========================================== -->
+        <section id="stepSupport" class="step-view">
+            <div class="support-card">
+                <div class="support-avatar-wrap">
+                    <div class="support-avatar-circle">
+                        <!-- Modern support agent illustration -->
+                        <svg width="90" height="90" viewBox="0 0 100 100" fill="none">
+                            <circle cx="50" cy="50" r="48" fill="#e0edff"/>
+                            <circle cx="50" cy="40" r="20" fill="#fed7aa"/>
+                            <circle cx="50" cy="40" r="18" fill="#fcd34d"/>
+                            <path d="M33 34C33 24 40 18 50 18C60 18 67 24 67 34C67 27 59 23 50 23C41 23 33 27 33 34Z" fill="#1e293b"/>
+                            <circle cx="43" cy="39" r="2.5" fill="#1e293b"/>
+                            <circle cx="57" cy="39" r="2.5" fill="#1e293b"/>
+                            <path d="M45 46C47 48 53 48 55 46" stroke="#1e293b" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M31 38C31 25 40 16 50 16C60 16 69 25 69 38" stroke="#0f172a" stroke-width="3.5" stroke-linecap="round"/>
+                            <rect x="27" y="34" width="6" height="12" rx="3" fill="#0f172a"/>
+                            <rect x="67" y="34" width="6" height="12" rx="3" fill="#0f172a"/>
+                            <path d="M30 43C30 52 40 54 44 54" stroke="#0f172a" stroke-width="3" stroke-linecap="round"/>
+                            <circle cx="45" cy="54" r="3" fill="#0f172a"/>
+                            <path d="M22 84C22 68 34 60 50 60C66 60 78 68 78 84" fill="#1769e8"/>
+                            <path d="M44 60L50 68L56 60" fill="#ffffff"/>
+                        </svg>
+                    </div>
+                </div>
 
+                <h2 class="support-title">Need Help?</h2>
+                <p class="support-subtitle">Our team is ready to assist you.</p>
+
+                <a id="callSupplierDirectLink" href="tel:98XXXXXXXX" class="btn-call-supplier">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                    <div class="call-text-wrap">
+                        <span class="call-label">Call Supplier</span>
+                        <span id="supportPhoneDisplay" class="call-number">98XXXXXXXX</span>
+                    </div>
+                </a>
+
+                <div class="info-banner support-timing-banner">
+                    <p class="info-banner-text">Available: 6:00 AM - 8:00 PM</p>
+                </div>
+
+                <button id="closeSupportBtn" class="btn-secondary" type="button">
+                    Close
+                </button>
+            </div>
+        </section>
+
+
+        <!-- ==========================================
+             SCREEN 6: ORDER PLACED / SUCCESS (STEP 7)
+        ========================================== -->
+        <section id="stepSuccess" class="step-view">
+            <div class="success-card">
+                <!-- Confetti particles -->
+                <div class="confetti-container" id="confettiContainer">
+                    <span class="confetti c1"></span>
+                    <span class="confetti c2"></span>
+                    <span class="confetti c3"></span>
+                    <span class="confetti c4"></span>
+                    <span class="confetti c5"></span>
+                    <span class="confetti c6"></span>
+                    <span class="confetti c7"></span>
+                    <span class="confetti c8"></span>
+                </div>
+
+                <div class="success-icon-badge">
+                    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                </div>
+
+                <h1 class="success-title">
+                    Order Placed<br>Successfully!
+                </h1>
+
+                <p class="success-subtitle">Thank you for your order.</p>
+
+                <div class="success-actions">
+                    <button id="viewDetailsBtn" class="btn-primary" type="button">
+                        View Order Details
+                    </button>
+
+                    <button id="trackStatusBtn" class="btn-secondary" type="button">
+                        Track Live Status
+                    </button>
+
+                    <button id="successHomeBtn" class="btn-home" type="button">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
+                        Back to Home
+                    </button>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==========================================
+             SCREEN 7: YOUR ORDER DETAILS (STEP 8)
+        ========================================== -->
+        <section id="stepDetails" class="step-view">
+            <div class="step-header">
+                <h2 class="step-title">Your Order Details</h2>
+                <p class="step-desc">See your order details for reference.</p>
+            </div>
+
+            <div class="details-card">
+                <div class="details-grid">
+                    <div class="detail-row">
+                        <span class="detail-label">Order ID</span>
+                        <strong id="detailOrderId" class="detail-value text-blue">#ORD-250524-001</strong>
+                    </div>
+
+                    <div class="detail-row">
+                        <span class="detail-label">Water Type</span>
+                        <strong id="detailWaterType" class="detail-value">20L Jar</strong>
+                    </div>
+
+                    <div class="detail-row">
+                        <span class="detail-label">Quantity</span>
+                        <strong id="detailQuantity" class="detail-value">1</strong>
+                    </div>
+
+                    <div class="detail-row">
+                        <span class="detail-label">Order Time</span>
+                        <strong id="detailOrderTime" class="detail-value">24 May 2025, 09:41 AM</strong>
+                    </div>
+
+                    <div class="detail-row">
+                        <span class="detail-label">Status</span>
+                        <span id="detailStatusBadge" class="status-pill placed">Placed</span>
+                    </div>
+                </div>
+
+                <div class="info-banner delivery-promise-banner">
+                    <p class="info-banner-text">We will deliver your order as soon as possible.</p>
+                </div>
+
+                <div class="details-actions">
+                    <button id="detailsTrackBtn" class="btn-primary" type="button">
+                        Track Live Status
+                    </button>
+
+                    <button id="detailsHomeBtn" class="btn-home" type="button">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
+                        Back to Home
+                    </button>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==========================================
+             SCREEN 8: ORDER STATUS TIMELINE (STEP 9)
+        ========================================== -->
+        <section id="stepStatus" class="step-view">
+            <div class="step-header">
+                <h2 class="step-title">Order Status</h2>
+                <p class="step-desc">You can check your order status anytime.</p>
+            </div>
+
+            <div class="status-card">
+                <div id="statusEmergencyAlert" class="emergency-alert-banner hidden">
+                    🚨 EMERGENCY ORDER (High Priority)
+                </div>
+
+                <div id="statusTimeline" class="status-timeline">
+                    <!-- Timeline items generated dynamically -->
+                </div>
+
+                <div class="info-banner status-footer-banner">
+                    <p class="info-banner-text">Thank you for choosing G.T Water!</p>
+                </div>
+
+                <button id="statusHomeBtn" class="btn-home" type="button">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                    Back to Home
+                </button>
+            </div>
         </section>
 
     </main>
 
-
-    <!-- ==============================
-         SUCCESS SCREEN
-    =============================== -->
-
-    <section
-        id="successScreen"
-        class="customer-screen hidden">
-
-        <div class="success-content">
-
-            <div class="success-icon">
-                ✓
-            </div>
-
-            <h1>
-                Order Placed
-                <br>
-                Successfully!
-            </h1>
-
-            <p>
-                Thank you for your order.
-            </p>
-
-            <button
-                id="viewStatusBtn"
-                class="secondary-action-button"
-                type="button">
-
-                View Order Status
-
-            </button>
-
+    <!-- ==========================================
+         STICKY BOTTOM SUPPORT BAR
+    ========================================== -->
+    <footer class="bottom-bar" id="bottomBar">
+        <div class="bottom-support-info">
+            <span class="support-sub">Call Supplier</span>
+            <a id="bottomCallLink" href="tel:98XXXXXXXX" class="support-phone">98XXXXXXXX</a>
         </div>
 
-    </section>
-
-
-    <!-- ==============================
-         ORDER STATUS
-    =============================== -->
-
-    <section
-        id="statusScreen"
-        class="customer-screen hidden">
-
-        <div class="status-content">
-
-            <h1>Order Status</h1>
-
-            <div
-                id="statusEmergencyBadge"
-                class="status-emergency-badge hidden">
-
-                🚨 EMERGENCY ORDER
-
-            </div>
-
-
-            <div
-                id="timelineSteps"
-                class="order-timeline">
-
-            </div>
-
-
-            <p
-                id="statusDetailText"
-                class="status-message">
-
-                We will update your order as soon as
-                the supplier confirms it.
-
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- ==============================
-         SUPPORT BAR
-    =============================== -->
-
-    <footer class="support-bar">
-
-        <div class="support-contact">
-
-            <span class="support-label">
-                Call Supplier
-            </span>
-
-            <a
-                href="tel:6009065856"
-                class="support-number">
-
-                6009065856
-
-            </a>
-
-        </div>
-
-
-        <button
-            id="helpBtn"
-            class="help-button"
-            type="button">
-
-            Help ?
-
+        <button id="bottomHelpBtn" class="bottom-help-button" type="button">
+            <span>Help ?</span>
         </button>
-
     </footer>
-
 
 </div>
 
-
 <script src="../js/customer.js"></script>
-
 </body>
 </html>

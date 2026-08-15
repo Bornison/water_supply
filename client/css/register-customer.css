@@ -1,183 +1,441 @@
 /* ==========================================
-   REGISTER CUSTOMER
-========================================== */
+   REGISTER CUSTOMER - STYLES
+   ========================================== */
 
-.dashboard{
-    display:flex;
-    min-height:100vh;
-    background:var(--background);
+.dashboard {
+    display: flex;
+    min-height: 100vh;
+    background: var(--background, #f4f8fc);
 }
 
 /* Sidebar */
-
-.sidebar{
-    width:260px;
-    background:#fff;
-    border-right:1px solid #e5e7eb;
-    padding:25px 18px;
+.sidebar {
+    width: 260px;
+    background: #fff;
+    border-right: 1px solid #e5e7eb;
+    padding: 25px 18px;
+    display: flex;
+    flex-direction: column;
 }
 
-.sidebar-header{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    margin-bottom:40px;
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 40px;
 }
 
-.sidebar-logo{
-    width:55px;
-    height:55px;
+.sidebar-logo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
 }
 
-.sidebar-header h2{
-    color:var(--primary);
+.sidebar-header h2 {
+    color: var(--primary, #1769e8);
+    font-size: 20px;
+    font-weight: 700;
 }
 
-.sidebar ul{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
+.sidebar ul {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
-.sidebar li{
-    padding:14px 18px;
-    border-radius:10px;
-    cursor:pointer;
-    transition:.25s;
+.sidebar li {
+    padding: 13px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .2s;
+    font-weight: 500;
+    color: #4b5563;
 }
 
-.sidebar li:hover{
-    background:#eef4ff;
-    color:var(--primary);
+.sidebar li:hover {
+    background: #eef4ff;
+    color: var(--primary, #1769e8);
 }
 
-.sidebar li.active{
-    background:var(--primary);
-    color:#fff;
+.sidebar li.active {
+    background: var(--primary, #1769e8);
+    color: #fff;
+    font-weight: 600;
 }
 
 /* Main */
-
-.main-content{
-    flex:1;
-    padding:35px;
+.main-content {
+    flex: 1;
+    padding: 35px 40px;
 }
 
-.topbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:30px;
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
 }
 
-.profile{
-    display:flex;
-    align-items:center;
-    gap:12px;
+.topbar h1 {
+    font-size: 26px;
+    font-weight: 800;
+    color: #111827;
 }
 
-.profile img{
-    width:45px;
-    height:45px;
-    border-radius:50%;
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 /* Card */
-
-.register-card{
-    background:#fff;
-    border-radius:16px;
-    padding:30px;
-    box-shadow:0 8px 20px rgba(0,0,0,.05);
+.register-card {
+    background: #fff;
+    border-radius: 18px;
+    padding: 32px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, .04);
+    border: 1px solid #edf2f7;
+    max-width: 700px;
 }
 
 /* Form */
-
-.form-group{
-    margin-bottom:22px;
+.form-group {
+    margin-bottom: 20px;
 }
 
-.form-group label{
-    display:block;
-    margin-bottom:8px;
-    font-weight:600;
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 14.5px;
+    color: #374151;
 }
 
 .form-group input,
-.form-group textarea{
-
-    width:100%;
-    padding:14px;
-    border:1px solid var(--border);
-    border-radius:10px;
-    font-size:15px;
+.form-group textarea {
+    width: 100%;
+    padding: 13px 16px;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    font-size: 15px;
+    outline: none;
+    transition: border-color .2s, box-shadow .2s;
+    font-family: inherit;
 }
 
 .form-group input:focus,
-.form-group textarea:focus{
-
-    border-color:var(--primary);
-
+.form-group textarea:focus {
+    border-color: #1769e8;
+    box-shadow: 0 0 0 3px rgba(23, 105, 232, 0.12);
 }
 
-textarea{
-    resize:vertical;
+textarea {
+    resize: vertical;
 }
 
 /* Buttons */
-
-.button-group{
-
-    display:flex;
-    gap:15px;
+.button-group {
+    display: flex;
+    gap: 14px;
+    margin-top: 26px;
 }
 
-.save-btn{
-
-    flex:1;
-    background:var(--primary);
-    color:#fff;
-    padding:14px;
-    border-radius:10px;
+.save-btn {
+    flex: 1;
+    background: #1769e8;
+    color: #fff;
+    padding: 14px 22px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(23, 105, 232, 0.25);
+    transition: background .2s;
 }
 
-.save-btn:hover{
-
-    background:var(--primary-hover);
+.save-btn:hover {
+    background: #1256c3;
 }
 
-.reset-btn{
-
-    flex:1;
-    background:#e5e7eb;
-    color:#111827;
-    padding:14px;
-    border-radius:10px;
+.reset-btn {
+    flex: 1;
+    background: #f3f4f6;
+    color: #374151;
+    padding: 14px 22px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 15px;
+    border: 1px solid #e5e7eb;
+    cursor: pointer;
+    transition: background .2s;
 }
 
-.reset-btn:hover{
+.reset-btn:hover {
+    background: #e5e7eb;
+}
 
-    background:#d1d5db;
+/* ==========================================
+   QR RESULT & STICKER UI (MATCHING MOCKUP)
+========================================== */
+.qr-result-wrapper {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* Green Success Alert Banner */
+.registration-success-banner {
+    width: 100%;
+    background: #edfbf2;
+    border: 1px solid #bbf7d0;
+    border-radius: 14px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+}
+
+.success-banner-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #16a34a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    flex-shrink: 0;
+}
+
+.success-banner-content h3 {
+    margin: 0 0 3px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #14532d;
+}
+
+.success-banner-content p {
+    margin: 0;
+    font-size: 14px;
+    color: #166534;
+}
+
+.success-banner-content strong {
+    font-weight: 700;
+    color: #0f172a;
+}
+
+/* Center QR Sticker Card */
+.qr-sticker-card {
+    width: 360px;
+    max-width: 100%;
+    background: #ffffff;
+    border-radius: 24px;
+    border: 1.5px solid #e2e8f0;
+    box-shadow: 0 14px 40px rgba(16, 76, 151, 0.12);
+    padding: 28px 24px 0;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 22px;
+}
+
+/* Blue Corner Brackets */
+.corner-bracket {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+}
+
+.corner-bracket.top-left {
+    top: 16px;
+    left: 16px;
+    border-top: 4.5px solid #104c97;
+    border-left: 4.5px solid #104c97;
+    border-top-left-radius: 10px;
+}
+
+.corner-bracket.top-right {
+    top: 16px;
+    right: 16px;
+    border-top: 4.5px solid #104c97;
+    border-right: 4.5px solid #104c97;
+    border-top-right-radius: 10px;
+}
+
+/* Sticker Headings */
+.sticker-heading h2 {
+    font-size: 25px;
+    font-weight: 800;
+    color: #104c97;
+    margin: 0 0 2px;
+    letter-spacing: -0.3px;
+}
+
+.sticker-heading h1 {
+    font-size: 32px;
+    font-weight: 800;
+    color: #104c97;
+    margin: 0 0 16px;
+    letter-spacing: -0.5px;
+}
+
+/* QR Code Box */
+.sticker-qr-box {
+    width: 180px;
+    height: 180px;
+    border: 3px solid #104c97;
+    border-radius: 18px;
+    padding: 10px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+}
+
+.sticker-qr-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Phone Section */
+.sticker-phone-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    z-index: 2;
+    margin-bottom: 4px;
+}
+
+.sticker-phone-badge {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #104c97;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+}
+
+.sticker-phone-number {
+    font-size: 20px;
+    font-weight: 800;
+    color: #104c97;
+    letter-spacing: 0.4px;
+}
+
+/* Bottom Water Splash Graphic */
+.sticker-water-splash {
+    width: calc(100% + 48px);
+    height: 64px;
+    margin-left: -24px;
+    margin-right: -24px;
+    background: linear-gradient(180deg, rgba(23, 105, 232, 0) 0%, rgba(23, 105, 232, 0.15) 35%, rgba(16, 76, 151, 0.4) 100%);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+}
+
+.water-wave-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Action Buttons (Download Only) */
+.sticker-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    width: 100%;
+    max-width: 360px;
+}
+
+.btn-download-qr {
+    background: #1769e8;
+    color: #ffffff;
+    border: none;
+    padding: 13px 28px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 14px rgba(23, 105, 232, 0.28);
+    transition: background .2s, transform .15s;
+    width: 100%;
+    justify-content: center;
+}
+
+.btn-download-qr:hover {
+    background: #1256c3;
+    transform: translateY(-1px);
+}
+
+.btn-download-qr:active {
+    transform: scale(0.98);
+}
+
+.btn-register-another {
+    background: #f1f5f9;
+    color: #475569;
+    border: 1px solid #cbd5e1;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 14.5px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 10px;
+    transition: background .2s;
+}
+
+.btn-register-another:hover {
+    background: #e2e8f0;
 }
 
 /* Responsive */
-
-@media(max-width:768px){
-
-    .dashboard{
-        flex-direction:column;
+@media(max-width: 768px) {
+    .dashboard {
+        flex-direction: column;
     }
-
-    .sidebar{
-        width:100%;
+    .sidebar {
+        width: 100%;
     }
-
-    .main-content{
-        padding:20px;
+    .main-content {
+        padding: 20px 16px;
     }
-
-    .button-group{
-        flex-direction:column;
+    .register-card {
+        padding: 20px;
     }
-
+    .button-group {
+        flex-direction: column;
+    }
+    .qr-sticker-card {
+        width: 100%;
+    }
 }

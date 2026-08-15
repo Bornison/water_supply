@@ -412,11 +412,83 @@
 
 .action-button.deliver-action{
 
-    background:#d1fae5;
+    background:#16a34a;
 
-    color:#166534;
+    color:#ffffff;
+
+    border-color:#15803d;
+
+    padding:8px 14px;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    border-radius:8px;
+
+}
+
+.action-button.deliver-action:hover{
+
+    background:#15803d;
+
+    color:#ffffff;
+
+}
+
+.action-button.due-action{
+
+    background:#fff7ed;
+
+    color:#c2410c;
+
+    border-color:#fed7aa;
+
+    padding:8px 14px;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    border-radius:8px;
+
+}
+
+.action-button.due-action:hover{
+
+    background:#c2410c;
+
+    color:#ffffff;
+
+    border-color:#c2410c;
+
+}
+
+.action-button.paid-action{
+
+    background:#dcfce7;
+
+    color:#15803d;
 
     border-color:#86efac;
+
+    padding:8px 14px;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    border-radius:8px;
+
+}
+
+.action-button.paid-action:hover{
+
+    background:#15803d;
+
+    color:#ffffff;
+
+    border-color:#15803d;
 
 }
 
@@ -426,13 +498,13 @@
 
     align-items:center;
 
-    padding:8px 14px;
+    padding:6px 12px;
 
     border-radius:30px;
 
     font-weight:700;
 
-    font-size:13px;
+    font-size:12.5px;
 
 }
 
@@ -442,6 +514,18 @@
 
     color:#d97706;
 
+    border:1px solid #fde68a;
+
+}
+
+.status-pill.due{
+
+    background:#fef3c7;
+
+    color:#b45309;
+
+    border:1px solid #fde68a;
+
 }
 
 .status-pill.delivered{
@@ -450,6 +534,8 @@
 
     color:#15803d;
 
+    border:1px solid #bbf7d0;
+
 }
 
 .status-pill.cancelled{
@@ -457,6 +543,8 @@
     background:#fee2e2;
 
     color:#b91c1c;
+
+    border:1px solid #fecaca;
 
 }
 

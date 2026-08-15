@@ -2,7 +2,7 @@
    AUTH CONFIGURATION
 ========================================== */
 
-const API_URL = "http://localhost:5000";
+const API_URL = window.location.port === "5500" ? "http://localhost:5000" : window.location.origin;
 
 /* ==========================================
    GET TOKEN
@@ -28,9 +28,72 @@ function getUser() {
 
     }
 
-    return JSON.parse(user);
+    try {
+        return JSON.parse(user);
+    } catch (e) {
+        return null;
+    }
 
 }
+
+/* ==========================================
+   GLOBAL USER PROFILE UI SYNC
+========================================== */
+
+function syncUserProfileUI() {
+    const user = getUser();
+    if (!user) return;
+
+    const profilePic = user.profile_picture || "../assets/images/profile.png";
+    const displayName = user.owner_name || user.username || "Administrator";
+
+    // Update all profile images across desktop topbar & mobile bar
+    document.querySelectorAll(".profile img, #topbarProfileImg, #dashboardProfileImg").forEach(img => {
+        if (profilePic) {
+            img.src = profilePic;
+        }
+    });
+
+    // Update all profile text / names
+    document.querySelectorAll(".profile span, #topbarProfileName, #dashboardProfileName").forEach(span => {
+        span.textContent = displayName;
+    });
+}
+
+async function refreshUserProfile() {
+    if (!getToken()) return;
+    try {
+        const response = await fetch(
+            `${API_URL}/api/settings`,
+            {
+                method: "GET",
+                headers: getHeaders()
+            }
+        );
+        if (response.ok) {
+            const data = await response.json();
+            if (data && data.success && data.data) {
+                const s = data.data;
+                const user = getUser() || {};
+                user.owner_name = s.owner_name || user.owner_name;
+                user.username = s.username || user.username;
+                user.phone = s.owner_phone || user.phone;
+                user.profile_picture = s.profile_picture || user.profile_picture;
+                user.business_name = s.business_name || user.business_name;
+                localStorage.setItem("user", JSON.stringify(user));
+                syncUserProfileUI();
+            }
+        }
+    } catch (e) {
+        // Background sync error - ignore
+    }
+}
+
+// Automatically sync on DOMContentLoaded
+document.addEventListener("DOMContentLoaded", () => {
+    syncUserProfileUI();
+    refreshUserProfile();
+});
 
 /* ==========================================
    AUTH HEADERS
@@ -245,3 +308,4 @@ async function authDelete(url) {
     return await handleResponse(response);
 
 }
+

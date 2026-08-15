@@ -12,10 +12,10 @@ address
 
 VALUES
 (
-'Bashi Khong Water Supply',
-'98XXXXXXXX',
-'',
-''
+'G.T Water',
+'6009065856',
+'gt@gmail.com',
+'Basikhong'
 );
 
 -- ==========================================================
@@ -33,11 +33,11 @@ phone
 
 VALUES
 (
-'BashiKhong Water',
+'G.T Water',
 'Administrator',
 'Hanao',
 'admin123',
-'98XXXXXXXX'
+'6009065856'
 );
 
 -- ==========================================================

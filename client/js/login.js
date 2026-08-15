@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const response = await fetch(
 
-                "http://localhost:5000/api/auth/login",
+                `${window.location.port === "5500" ? "http://localhost:5000" : window.location.origin}/api/auth/login`,
 
                 {
 
@@ -129,3 +129,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
+
+
+

@@ -5,11 +5,11 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>Settings | BashiKhong Water</title>
+    <title>Settings | G.T Water</title>
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap-grid.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/settings.css">
 
@@ -30,7 +30,7 @@
                 alt="Logo"
                 class="sidebar-logo">
 
-            <h2>BashiKhong</h2>
+            <h2>G.T Water</h2>
 
         </div>
 
@@ -72,98 +72,175 @@
 
             <h1>Settings</h1>
 
-            <div class="profile">
+            <div class="profile" id="topbarProfileWrap">
 
                 <img
+                    id="topbarProfileImg"
                     src="../assets/images/profile.png"
                     alt="Profile">
 
-                <span>Administrator</span>
+                <span id="topbarProfileName">Administrator</span>
 
             </div>
 
         </header>
 
-        <!-- Business Information -->
+        <!-- Minimalist Profile & Business Information Grid -->
+        <div class="settings-grid-duo">
+
+            <!-- 1. Administrator Profile Card -->
+            <section class="settings-card profile-card-minimal">
+                <div class="card-header-clean">
+                    <div class="card-header-icon-wrap user-icon">👤</div>
+                    <div>
+                        <h3>Profile Information</h3>
+                        <p class="card-subtitle">Manage your personal admin account & avatar</p>
+                    </div>
+                </div>
+
+                <form id="profileForm" class="settings-clean-form">
+                    <!-- Avatar Upload Row -->
+                    <div class="avatar-upload-section">
+                        <div class="avatar-preview-wrap">
+                            <img id="profileAvatarPreview" src="../assets/images/profile.png" alt="Profile Picture">
+                            <label for="profileImageInput" class="avatar-change-btn" title="Change Avatar">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                                    <circle cx="12" cy="13" r="4"></circle>
+                                </svg>
+                            </label>
+                            <input type="file" id="profileImageInput" accept="image/*" class="hidden-file-input">
+                        </div>
+                        <div class="avatar-info-text">
+                            <strong id="avatarOwnerDisplay">Administrator</strong>
+                            <span>System Administrator</span>
+                            <button type="button" class="btn-text-action" id="resetAvatarBtn">Reset to Default</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group-clean">
+                        <label for="ownerName">Display Name</label>
+                        <input type="text" id="ownerName" placeholder="e.g. Hanao" required>
+                    </div>
+
+                    <div class="form-group-clean">
+                        <label for="ownerUsername">Login Username</label>
+                        <input type="text" id="ownerUsername" placeholder="e.g. Hanao" required>
+                    </div>
+
+                    <div class="form-group-clean">
+                        <label for="ownerPhone">Personal Phone Number</label>
+                        <input type="tel" id="ownerPhone" placeholder="e.g. 9854123654">
+                    </div>
+
+                    <div class="form-action-clean">
+                        <button type="submit" class="btn-save-clean" id="saveProfileBtn">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                                <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                                <polyline points="7 3 7 8 15 8"></polyline>
+                            </svg>
+                            <span>Save Profile</span>
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- 2. Business Information Card -->
+            <section class="settings-card business-card-minimal">
+                <div class="card-header-clean">
+                    <div class="card-header-icon-wrap business-icon">🏢</div>
+                    <div>
+                        <h3>Business Information</h3>
+                        <p class="card-subtitle">Public company details shown on QR stickers & orders</p>
+                    </div>
+                </div>
+
+                <form id="businessForm" class="settings-clean-form">
+                    <div class="form-group-clean">
+                        <label for="businessName">Business Name</label>
+                        <input type="text" id="businessName" placeholder="e.g. G.T Water" required>
+                    </div>
+
+                    <div class="form-group-clean">
+                        <label for="businessPhone">Customer Helpline Phone</label>
+                        <input type="tel" id="businessPhone" placeholder="e.g. 6009065856" required>
+                        <span class="field-hint">Printed on customer QR ordering stickers</span>
+                    </div>
+
+                    <div class="form-group-clean">
+                        <label for="businessEmail">Business Email</label>
+                        <input type="email" id="businessEmail" placeholder="e.g. gt@gmail.com" required>
+                    </div>
+
+                    <div class="form-group-clean">
+                        <label for="businessAddress">Delivery Hub / Address</label>
+                        <textarea id="businessAddress" rows="3" placeholder="e.g. Basikhong, Imphal East" required></textarea>
+                    </div>
+
+                    <div class="form-action-clean">
+                        <button type="submit" class="btn-save-clean" id="saveBusinessBtn">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                                <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                                <polyline points="7 3 7 8 15 8"></polyline>
+                            </svg>
+                            <span>Save Business Details</span>
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+        </div>
+
+        <!-- Customer Self-Registration QR Code -->
 
         <section class="settings-card">
 
-            <h2>Business Information</h2>
+            <div class="section-header">
 
-            <form id="settingsForm">
-
-                <div class="form-group">
-
-                    <label>Business Name</label>
-
-                    <input
-                        type="text"
-                        id="businessName"
-                        placeholder="Business Name">
-
+                <div>
+                    <h2>Customer Registration & QR</h2>
+                    <p class="section-subtitle">Register new customers or generate the public QR code for customer self-registration</p>
                 </div>
 
-                <div class="form-group">
-
-                    <label>Phone Number</label>
-
-                    <input
-                        type="tel"
-                        id="phone"
-                        placeholder="Phone Number">
-
-                </div>
-
-                <div class="form-group">
-
-                    <label>Email</label>
-
-                    <input
-                        type="email"
-                        id="email"
-                        placeholder="Email">
-
-                </div>
-
-                <div class="form-group">
-
-                    <label for="address">Business Address</label>
-
-                    <textarea
-                        id="address"
-                        name="address"
-                        rows="4"
-                        placeholder="Business Address"
-                        title="Business Address"></textarea>
-
-                </div>
-
-                <div class="form-group">
-
-                    <label for="profileImage">Profile Picture</label>
-
-                    <input
-                        type="file"
-                        id="profileImage"
-                        name="profileImage"
-                        accept="image/*"
-                        title="Profile Picture">
-
-                </div>
-
-                <div class="button-group">
-
+                <div class="header-action-group">
                     <button
-                        type="submit"
-                        class="save-btn">
-
-                        Save Changes
-
+                        id="openRegisterPageBtn"
+                        class="btn-open-register"
+                        type="button"
+                        onclick="window.location.href='register-customer.html'">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="8.5" cy="7" r="4"></circle>
+                            <line x1="20" y1="8" x2="20" y2="14"></line>
+                            <line x1="23" y1="11" x2="17" y2="11"></line>
+                        </svg>
+                        <span>+ Register Customer</span>
                     </button>
 
+                    <button
+                        id="registerQR"
+                        class="btn-register-qr"
+                        type="button">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="14" width="7" height="7"></rect>
+                            <rect x="3" y="14" width="7" height="7"></rect>
+                        </svg>
+                        <span>registerQR</span>
+                    </button>
                 </div>
 
-            </form>
+            </div>
+
+            <div class="qr-preview-teaser">
+                <div class="qr-teaser-info">
+                    <p><strong>Print or display this Master Registration QR Code.</strong> When new customers scan it with their smartphone, it opens the self-registration form. After submitting their name, phone, and address, their unique ordering sticker QR will be generated automatically.</p>
+                    <span class="qr-target-url" id="publicRegUrlDisplay">Loading registration URL...</span>
+                </div>
+            </div>
 
         </section>
 
@@ -173,11 +250,15 @@
 
             <div class="section-header">
 
-                <h2>Products</h2>
+                <div>
+                    <h2>Products</h2>
+                    <p class="section-subtitle">Manage water products, volume sizes, and availability</p>
+                </div>
 
                 <button
                     id="addProductBtn"
-                    class="add-btn">
+                    class="add-btn"
+                    type="button">
 
                     + Add Product
 
@@ -185,79 +266,174 @@
 
             </div>
 
-            <table>
+            <div class="table-responsive">
+                <table>
 
-                <thead>
+                    <thead>
 
-                    <tr>
+                        <tr>
 
-                        <th>Product</th>
+                            <th>Product</th>
 
-                        <th>Volume</th>
+                            <th>Volume</th>
 
-                        <th>Unit</th>
+                            <th>Unit</th>
 
-                        <th>Status</th>
+                            <th>Status</th>
 
-                        <th>Action</th>
+                            <th>Action</th>
 
-                    </tr>
+                        </tr>
 
-                </thead>
+                    </thead>
 
-                <tbody id="productTable">
+                    <tbody id="productTable">
 
-                    <tr>
+                        <tr>
+                            <td colspan="5" style="text-align: center; color: #64748b;">Loading products...</td>
+                        </tr>
 
-                        <td>20L Jar</td>
+                    </tbody>
 
-                        <td>20</td>
-
-                        <td>Liter</td>
-
-                        <td>Active</td>
-
-                        <td>
-
-                            <button class="edit-btn">
-                                Edit
-                            </button>
-
-                        </td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>1L Bottle</td>
-
-                        <td>1</td>
-
-                        <td>Liter</td>
-
-                        <td>Active</td>
-
-                        <td>
-
-                            <button class="edit-btn">
-                                Edit
-                            </button>
-
-                        </td>
-
-                    </tr>
-
-                </tbody>
-
-            </table>
+                </table>
+            </div>
 
         </section>
 
     </main>
 
 </div>
-    <script src="../js/auth.js"></script>
-    <script src="../js/settings.js"></script>
+
+<!-- ==========================================
+     COMMON REGISTRATION QR MODAL
+========================================== -->
+<div id="registerQrModal" class="modal-wrapper hidden">
+    <div class="modal-backdrop" id="regQrModalBackdrop"></div>
+    <div class="modal-card modal-qr-card">
+        <div class="modal-header">
+            <div>
+                <h2>Common Registration QR Code</h2>
+                <p class="modal-subtitle">Share or print this QR code for new customer self-registration</p>
+            </div>
+            <button class="modal-close" id="regQrModalCloseBtn" type="button" aria-label="Close">&times;</button>
+        </div>
+
+        <div class="modal-body modal-qr-body" id="regQrModalBody">
+            <!-- Rendered Registration Sticker Card -->
+        </div>
+
+        <div class="modal-actions-center">
+            <button type="button" class="btn-download-qr" id="regQrDownloadBtn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>Download QR</span>
+            </button>
+            <button type="button" class="btn-cancel" id="regQrCloseBtn">Close</button>
+        </div>
+    </div>
+</div>
+
+<!-- ==========================================
+     ADD PRODUCT MODAL
+========================================== -->
+<div id="addProductModal" class="modal-wrapper hidden">
+    <div class="modal-backdrop" id="addModalBackdrop"></div>
+    <div class="modal-card">
+        <div class="modal-header">
+            <h2>Add New Product</h2>
+            <button class="modal-close" id="addModalCloseBtn" type="button" aria-label="Close">&times;</button>
+        </div>
+
+        <form id="addProductForm" class="modal-form">
+            <div class="form-group">
+                <label for="addProductName">Product Name</label>
+                <input type="text" id="addProductName" placeholder="e.g. 20L Jar, 10L Bottle" required>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group flex-1">
+                    <label for="addProductVolume">Volume</label>
+                    <input type="number" id="addProductVolume" min="1" step="any" placeholder="e.g. 20" required>
+                </div>
+
+                <div class="form-group flex-1">
+                    <label for="addProductUnit">Unit</label>
+                    <select id="addProductUnit" required>
+                        <option value="Liter" selected>Liter</option>
+                        <option value="Bottle">Bottle</option>
+                        <option value="Gallon">Gallon</option>
+                        <option value="ml">ml</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button type="button" class="btn-cancel" id="addCancelBtn">Cancel</button>
+                <button type="submit" class="btn-submit-add" id="addSubmitBtn">Add Product</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- ==========================================
+     EDIT PRODUCT MODAL (WITH DELETE)
+========================================== -->
+<div id="editProductModal" class="modal-wrapper hidden">
+    <div class="modal-backdrop" id="editModalBackdrop"></div>
+    <div class="modal-card">
+        <div class="modal-header">
+            <h2>Edit Product</h2>
+            <button class="modal-close" id="editModalCloseBtn" type="button" aria-label="Close">&times;</button>
+        </div>
+
+        <form id="editProductForm" class="modal-form">
+            <input type="hidden" id="editProductId">
+
+            <div class="form-group">
+                <label for="editProductName">Product Name</label>
+                <input type="text" id="editProductName" placeholder="Product Name" required>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group flex-1">
+                    <label for="editProductVolume">Volume</label>
+                    <input type="number" id="editProductVolume" min="1" step="any" placeholder="Volume" required>
+                </div>
+
+                <div class="form-group flex-1">
+                    <label for="editProductUnit">Unit</label>
+                    <select id="editProductUnit" required>
+                        <option value="Liter">Liter</option>
+                        <option value="Bottle">Bottle</option>
+                        <option value="Gallon">Gallon</option>
+                        <option value="ml">ml</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="modal-actions-space">
+                <button type="button" class="btn-delete" id="editProductDeleteBtn">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="3 6 5 6 21 6"></polyline>
+                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                    </svg>
+                    <span>Delete Product</span>
+                </button>
+                <div class="modal-right-actions">
+                    <button type="button" class="btn-cancel" id="editCancelBtn">Cancel</button>
+                    <button type="submit" class="btn-save-edit" id="editSaveBtn">Save Changes</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="../js/auth.js"></script>
+<script src="../js/mobile-nav.js"></script>
+<script src="../js/settings.js"></script>
 
 </body>
 

@@ -16,7 +16,7 @@ async function findByUsername(username) {
             phone,
             profile_picture
         FROM users
-        WHERE username = $1
+        WHERE LOWER(username) = LOWER($1)
         LIMIT 1
     `;
 

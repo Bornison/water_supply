@@ -11,9 +11,9 @@ async function register(req, res) {
 
         const customer = await Customer.createCustomer(req.body);
 
-        const qrData = customer.customer_code;
+        const orderUrl = `${req.protocol}://${req.get("host")}/pages/customer-order.html?customerCode=${encodeURIComponent(customer.customer_code)}`;
 
-        const qrImage = await QRCode.toDataURL(qrData);
+        const qrImage = await QRCode.toDataURL(orderUrl);
 
         res.status(201).json({
 
@@ -23,11 +23,14 @@ async function register(req, res) {
 
             customer,
 
-            qr: qrImage
+            qr: qrImage,
+
+            orderUrl
 
         });
 
     }
+
 
     catch (error) {
 
@@ -155,6 +158,69 @@ async function update(req, res) {
 
 }
 
+/* ==========================================
+   DELETE CUSTOMER
+========================================== */
+
+async function remove(req, res) {
+
+    try {
+
+        const id = Number(req.params.id);
+
+        if (!id || !Number.isInteger(id) || id <= 0) {
+
+            return res.status(400).json({
+
+                success: false,
+
+                message: "Invalid customer ID."
+
+            });
+
+        }
+
+        const customer = await Customer.deleteCustomer(id);
+
+        if (!customer) {
+
+            return res.status(404).json({
+
+                success: false,
+
+                message: "Customer not found."
+
+            });
+
+        }
+
+        res.json({
+
+            success: true,
+
+            message: "Customer deleted successfully.",
+
+            data: customer
+
+        });
+
+    } catch (error) {
+
+        console.error(error);
+
+        res.status(500).json({
+
+            success: false,
+
+            message: "Internal Server Error"
+
+        });
+
+    }
+
+}
+
+
 module.exports = {
 
     register,
@@ -163,6 +229,8 @@ module.exports = {
 
     getOne,
 
-    update
+    update,
 
-};
+    remove
+
+};

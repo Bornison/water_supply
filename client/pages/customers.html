@@ -5,11 +5,11 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>Customers | BashiKhong Water</title>
+    <title>Customers | G.T Water</title>
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap-grid.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/customers.css">
 
@@ -30,7 +30,7 @@
                     alt="Logo"
                     class="sidebar-logo">
 
-                <h2>BashiKhong</h2>
+                <h2>G.T Water</h2>
 
             </div>
 
@@ -110,85 +110,7 @@
                 class="customers-container"
                 id="customersContainer">
 
-                <!-- Customer Card -->
-
-                <div class="customer-card">
-
-                    <div class="customer-info">
-
-                        <h2>Rahul Sharma</h2>
-
-                        <p>
-                            📞 9876543210
-                        </p>
-
-                        <p>
-                            📍 Imphal West
-                        </p>
-
-                        <p>
-                            🆔 CUST000001
-                        </p>
-
-                    </div>
-
-                    <div class="customer-actions-btn">
-
-                        <button class="view-btn">
-
-                            View QR
-
-                        </button>
-
-                        <button class="edit-btn">
-
-                            Edit
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-                <!-- Customer Card -->
-
-                <div class="customer-card">
-
-                    <div class="customer-info">
-
-                        <h2>David Singh</h2>
-
-                        <p>
-                            📞 9123456789
-                        </p>
-
-                        <p>
-                            📍 Thoubal
-                        </p>
-
-                        <p>
-                            🆔 CUST000002
-                        </p>
-
-                    </div>
-
-                    <div class="customer-actions-btn">
-
-                        <button class="view-btn">
-
-                            View QR
-
-                        </button>
-
-                        <button class="edit-btn">
-
-                            Edit
-
-                        </button>
-
-                    </div>
-
-                </div>
+                <p>Loading customers...</p>
 
             </section>
 
@@ -196,7 +118,71 @@
 
     </div>
 
+    <!-- ==========================================
+         VIEW QR STICKER MODAL
+    ========================================== -->
+    <div id="qrModal" class="qr-modal hidden">
+        <div class="qr-modal-backdrop" id="qrModalBackdrop"></div>
+        <div class="qr-modal-content">
+            <button class="qr-modal-close" id="qrModalCloseBtn" aria-label="Close">&times;</button>
+            <div id="qrModalBody">
+                <!-- Injected dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         EDIT CUSTOMER MODAL
+    ========================================== -->
+    <div id="editCustomerModal" class="qr-modal hidden">
+        <div class="qr-modal-backdrop" id="editModalBackdrop"></div>
+        <div class="edit-modal-content">
+            <div class="edit-modal-header">
+                <h2>Edit Customer</h2>
+                <button class="qr-modal-close" id="editModalCloseBtn" aria-label="Close">&times;</button>
+            </div>
+
+            <form id="editCustomerForm" class="edit-customer-form">
+                <input type="hidden" id="editCustomerId">
+
+                <div class="edit-customer-code-badge" id="editCustomerCodeBadge">
+                    <span>Customer Code:</span> <strong id="editCustomerCodeDisplay">CUST000001</strong>
+                </div>
+
+                <div class="form-group">
+                    <label for="editCustomerName">Customer Name</label>
+                    <input type="text" id="editCustomerName" placeholder="Enter customer name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editCustomerPhone">Phone Number</label>
+                    <input type="tel" id="editCustomerPhone" placeholder="Enter phone number" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editCustomerAddress">Address</label>
+                    <textarea id="editCustomerAddress" rows="3" placeholder="Enter address" required></textarea>
+                </div>
+
+                <div class="edit-modal-actions">
+                    <button type="button" class="btn-delete" id="editDeleteBtn">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="3 6 5 6 21 6"></polyline>
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                        </svg>
+                        Delete
+                    </button>
+                    <div class="edit-modal-right-actions">
+                        <button type="button" class="btn-cancel" id="editCancelBtn">Cancel</button>
+                        <button type="submit" class="btn-save-edit" id="editSaveBtn">Save Changes</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script src="../js/auth.js"></script>
+    <script src="../js/mobile-nav.js"></script>
     <script src="../js/customers.js"></script>
 
 </body>

@@ -1,35 +1,36 @@
+const crypto = require("crypto");
 const pool = require("../config/db");
 
 /* ==========================================
-   GENERATE CUSTOMER CODE
+   GENERATE RANDOM CUSTOMER CODE
 ========================================== */
 
+function generateRandomCode(length = 6) {
+    const chars = "23456789ABCDEFGHJKLMNPQRSTUVWXYZ"; // Clean alphanumeric uppercase
+    let result = "";
+    const randomBytes = crypto.randomBytes(length);
+    for (let i = 0; i < length; i++) {
+        result += chars[randomBytes[i] % chars.length];
+    }
+    return `CUST${result}`;
+}
+
 async function generateCustomerCode() {
+    let isUnique = false;
+    let code = "";
+    let attempts = 0;
 
-    const query = `
-
-        SELECT id
-
-        FROM customers
-
-        ORDER BY id DESC
-
-        LIMIT 1
-
-    `;
-
-    const result = await pool.query(query);
-
-    if (result.rows.length === 0) {
-
-        return "CUST000001";
-
+    while (!isUnique && attempts < 10) {
+        code = generateRandomCode(6);
+        const checkQuery = `SELECT id FROM customers WHERE customer_code = $1 LIMIT 1`;
+        const result = await pool.query(checkQuery, [code]);
+        if (result.rows.length === 0) {
+            isUnique = true;
+        }
+        attempts++;
     }
 
-    const nextId = Number(result.rows[0].id) + 1;
-
-    return "CUST" + String(nextId).padStart(6, "0");
-
+    return code;
 }
 
 /* ==========================================
@@ -94,13 +95,16 @@ async function getCustomers() {
 
     const query = `
 
-        SELECT *
-
-        FROM customers
-
-        WHERE active = TRUE
-
-        ORDER BY name ASC
+        SELECT
+            c.*,
+            COALESCE(COUNT(o.id), 0) AS total_orders,
+            COALESCE(COUNT(CASE WHEN o.status = 'Pending' THEN 1 END), 0) AS pending_orders,
+            MAX(o.ordered_at) AS last_order_date
+        FROM customers c
+        LEFT JOIN orders o ON o.customer_id = c.id
+        WHERE c.active = TRUE
+        GROUP BY c.id
+        ORDER BY c.name ASC
 
     `;
 
@@ -109,6 +113,7 @@ async function getCustomers() {
     return result.rows;
 
 }
+
 
 /* ==========================================
    GET CUSTOMER
@@ -198,6 +203,28 @@ async function updateCustomer(id, customer) {
 
 }
 
+async function deleteCustomer(id) {
+
+    const query = `
+
+        UPDATE customers
+
+        SET active = FALSE,
+
+            updated_at = CURRENT_TIMESTAMP
+
+        WHERE id = $1
+
+        RETURNING *
+
+    `;
+
+    const result = await pool.query(query, [id]);
+
+    return result.rows[0];
+
+}
+
 module.exports = {
 
     createCustomer,
@@ -210,6 +237,8 @@ module.exports = {
 
     updateCustomer,
 
+    deleteCustomer,
+
     generateCustomerCode
 
-};
+};

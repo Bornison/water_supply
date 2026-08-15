@@ -107,7 +107,7 @@ CREATE TABLE orders (
 
     status VARCHAR(20)
         DEFAULT 'Pending'
-        CHECK (status IN ('Pending','Delivered','Cancelled')),
+        CHECK (status IN ('Pending','Delivered','Due','Cancelled')),
 
     remarks TEXT,
 

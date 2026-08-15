@@ -196,7 +196,69 @@ async function changeStatus(req,res){
 
 }
 
-module.exports={
+/* ==========================================
+   DELETE PRODUCT
+========================================== */
+
+async function remove(req, res) {
+
+    try {
+
+        const id = Number(req.params.id);
+
+        if (!id || !Number.isInteger(id) || id <= 0) {
+
+            return res.status(400).json({
+
+                success: false,
+
+                message: "Invalid product ID."
+
+            });
+
+        }
+
+        const product = await Product.deleteProduct(id);
+
+        if (!product) {
+
+            return res.status(404).json({
+
+                success: false,
+
+                message: "Product not found."
+
+            });
+
+        }
+
+        res.json({
+
+            success: true,
+
+            message: "Product deleted successfully.",
+
+            data: product
+
+        });
+
+    } catch (error) {
+
+        console.error(error);
+
+        res.status(500).json({
+
+            success: false,
+
+            message: "Internal Server Error"
+
+        });
+
+    }
+
+}
+
+module.exports = {
 
     getAll,
 
@@ -206,6 +268,8 @@ module.exports={
 
     update,
 
-    changeStatus
+    changeStatus,
 
-};
+    remove
+
+};

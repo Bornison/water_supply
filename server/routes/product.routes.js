@@ -51,13 +51,15 @@ router.put(
 );
 
 router.patch(
-
     "/:id/status",
-
     verifyToken,
-
     productController.changeStatus
-
 );
 
-module.exports=router;
+router.delete(
+    "/:id",
+    verifyToken,
+    productController.remove
+);
+
+module.exports = router;

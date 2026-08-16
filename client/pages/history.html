@@ -182,7 +182,8 @@
 
                 <p class="history-loading-msg" id="historyMessage">Loading archive...</p>
 
-                <div class="table-responsive">
+                <!-- Desktop Table View (>= 769px) -->
+                <div class="table-responsive desktop-view-only">
 
                     <table>
 
@@ -209,6 +210,9 @@
                     </table>
 
                 </div>
+
+                <!-- Mobile Cards View (<= 768px) -->
+                <div class="mobile-view-only" id="historyCardsContainer"></div>
 
             </section>
 

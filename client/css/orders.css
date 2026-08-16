@@ -557,65 +557,201 @@
 }
 
 /* ==========================================
-   RESPONSIVE
+   RESPONSIVE (ORDERS HCI REFINEMENT)
 ========================================= */
-
-@media(max-width:1024px){
-
-    .orders-table table{
-
-        min-width:750px;
-
+@media(max-width: 768px) {
+    .main-content {
+        padding: 16px 14px 28px !important;
+        width: 100% !important;
+        max-width: 100vw !important;
     }
 
+    .topbar {
+        margin-bottom: 16px !important;
+    }
+
+    .search-box {
+        margin-bottom: 16px;
+    }
+
+    .search-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .search-box input {
+        max-width: 100% !important;
+        width: 100% !important;
+        height: 46px;
+    }
+
+    .page-actions {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .status-filters {
+        display: flex;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        gap: 8px;
+        padding-bottom: 4px;
+        width: 100%;
+        scrollbar-width: none;
+    }
+
+    .status-filters::-webkit-scrollbar {
+        display: none;
+    }
+
+    .status-btn {
+        flex-shrink: 0;
+        min-height: 42px;
+        padding: 8px 14px;
+        font-size: 13.5px;
+        border-radius: 10px;
+        white-space: nowrap;
+    }
+
+    .refresh-btn {
+        width: 100%;
+        min-height: 44px;
+    }
+
+    .orders-table.card {
+        padding: 16px 14px;
+        border-radius: 16px;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+    }
+
+    .orders-table .table-header {
+        padding-bottom: 12px;
+    }
+
+    .orders-table .table-header h2 {
+        font-size: 18px;
+        font-weight: 800;
+        color: #0f172a;
+    }
+
+    #ordersCardsContainer {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        width: 100%;
+    }
+
+    .order-card-item {
+        background: #ffffff;
+        border-radius: 16px;
+        padding: 16px 18px;
+        border: 1.5px solid #edf2f7;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        transition: all .2s ease;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .order-card-item:hover {
+        transform: translateY(-2px);
+        border-color: #cbd5e1;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    .order-card-item.expanded {
+        border-color: #93c5fd;
+        box-shadow: 0 8px 24px rgba(23, 105, 232, 0.08);
+    }
+
+    .order-header-right {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+
+    .order-toggle-indicator {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        color: #64748b;
+        font-size: 12.5px;
+        font-weight: 600;
+    }
+
+    .view-details-hint {
+        background: #f1f5f9;
+        padding: 4px 9px;
+        border-radius: 12px;
+        color: #475569;
+        font-size: 11.5px;
+        font-weight: 600;
+        transition: background .15s, color .15s;
+    }
+
+    .order-card-item:hover .view-details-hint {
+        background: #e2e8f0;
+        color: #1e293b;
+    }
+
+    .order-card-item.expanded .view-details-hint {
+        background: #eff6ff;
+        color: #1d4ed8;
+    }
+
+    .chevron-icon {
+        transition: transform .25s ease, color .2s;
+        color: #94a3b8;
+    }
+
+    .order-card-item:hover .chevron-icon {
+        color: #1769e8;
+    }
+
+    .order-card-item.expanded .chevron-icon {
+        transform: rotate(180deg);
+        color: #1769e8;
+    }
+
+    /* Collapsible Details - Hidden by default */
+    .order-details-collapsible {
+        display: none;
+        margin-top: 14px;
+        padding-top: 14px;
+        border-top: 1px dashed #e2e8f0;
+        width: 100%;
+    }
+
+    .order-card-item.expanded .order-details-collapsible {
+        display: grid;
+        animation: expandOrderDetails .25s ease-out;
+    }
+
+    @keyframes expandOrderDetails {
+        from {
+            opacity: 0;
+            transform: translateY(-6px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .order-card-actions {
+        margin-top: 14px;
+        padding-top: 12px;
+        border-top: 1px solid #f1f5f9;
+        display: flex;
+        gap: 10px;
+        width: 100%;
+    }
 }
 
-@media(max-width:768px){
 
-    .dashboard{
-
-        flex-direction:column;
-
-    }
-
-    .sidebar{
-
-        width:100%;
-
-        border-right:none;
-
-        border-bottom:1px solid #e5e7eb;
-
-    }
-
-    .main-content{
-
-        padding:20px;
-
-    }
-
-    .topbar{
-
-        flex-direction:column;
-
-        align-items:flex-start;
-
-        gap:15px;
-
-    }
-
-    .search-row{
-
-        flex-direction:column;
-
-        align-items:flex-start;
-
-    }
-
-    .orders-table table{
-
-        min-width:100%;
-
-    }
-
-}

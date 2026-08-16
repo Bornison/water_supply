@@ -57,6 +57,27 @@ function initMobileNav() {
         closeBtn.addEventListener("click", closeMobileSidebar);
     }
 
+    // 4. Inject Logout item into Sidebar Navigation if not present
+    const sidebarUl = sidebar.querySelector("ul");
+    if (sidebarUl && !sidebar.querySelector(".sidebar-logout-item")) {
+        const logoutLi = document.createElement("li");
+        logoutLi.className = "sidebar-logout-item";
+        logoutLi.innerHTML = `<span style="font-size: 16px;">🚪</span> <span>Log Out</span>`;
+        logoutLi.style.cursor = "pointer";
+        logoutLi.addEventListener("click", (e) => {
+            e.stopPropagation();
+            if (window.innerWidth <= 768) {
+                closeMobileSidebar();
+            }
+            if (typeof confirmLogout === "function") {
+                confirmLogout();
+            } else if (confirm("Are you sure you want to log out?")) {
+                logout();
+            }
+        });
+        sidebarUl.appendChild(logoutLi);
+    }
+
     // 4. Toggle Listeners
     const toggleBtn = document.getElementById("mobileNavToggle");
     if (toggleBtn) {

@@ -1,20 +1,20 @@
-/* ==========================================
-   LOGIN PAGE
-========================================== */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
 
 body {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    background: #f5f7fb;
+    font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+    background: #f4f8fc;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    padding: 16px;
 }
 
 /* ==========================================
@@ -23,8 +23,8 @@ body {
 
 .login-container {
     width: 100%;
-    max-width: 420px;
-    padding: 20px;
+    max-width: 400px;
+    padding: 0;
 }
 
 /* ==========================================
@@ -33,9 +33,10 @@ body {
 
 .login-card {
     background: #ffffff;
-    border-radius: 18px;
-    padding: 35px 30px;
-    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+    padding: 32px 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    border: 1.5px solid #edf2f7;
 }
 
 /* ==========================================
@@ -44,25 +45,28 @@ body {
 
 .logo-section {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 24px;
 }
 
 .logo {
-    width: 90px;
-    height: 90px;
+    width: 80px;
+    height: 80px;
     object-fit: contain;
-    margin-bottom: 15px;
+    margin: 0 auto 12px;
 }
 
 .logo-section h1 {
-    font-size: 24px;
-    color: #2563eb;
-    margin-bottom: 8px;
+    font-size: 22px;
+    font-weight: 800;
+    color: #1769e8;
+    margin-bottom: 4px;
+    letter-spacing: -0.3px;
 }
 
 .logo-section p {
-    color: #777;
-    font-size: 15px;
+    color: #64748b;
+    font-size: 14px;
+    font-weight: 500;
 }
 
 /* ==========================================
@@ -70,31 +74,32 @@ body {
 ========================================== */
 
 .input-group {
-    margin-bottom: 22px;
+    margin-bottom: 18px;
 }
 
 .input-group label {
     display: block;
-    margin-bottom: 8px;
-    color: #333;
+    margin-bottom: 6px;
+    color: #1e293b;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 13.5px;
 }
 
 .input-group input {
     width: 100%;
-    height: 50px;
-    padding: 0 15px;
-    border: 1px solid #d9d9d9;
-    border-radius: 10px;
-    font-size: 15px;
+    height: 48px;
+    padding: 0 14px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 14.5px;
     outline: none;
-    transition: .3s;
+    transition: .2s;
+    font-family: inherit;
 }
 
 .input-group input:focus {
-    border-color: #2563eb;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, .12);
+    border-color: #1769e8;
+    box-shadow: 0 0 0 3px rgba(23, 105, 232, .12);
 }
 
 /* ==========================================
@@ -106,18 +111,23 @@ body {
 }
 
 .password-box input {
-    padding-right: 55px;
+    padding-right: 50px;
 }
 
 .toggle-btn {
     position: absolute;
-    right: 12px;
+    right: 4px;
     top: 50%;
     transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
     border: none;
     background: transparent;
     cursor: pointer;
     font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* ==========================================
@@ -126,19 +136,22 @@ body {
 
 .login-btn {
     width: 100%;
-    height: 52px;
-    background: #2563eb;
+    min-height: 48px;
+    background: #1769e8;
     color: white;
     border: none;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: 600;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 700;
     cursor: pointer;
-    transition: .3s;
+    box-shadow: 0 4px 14px rgba(23, 105, 232, 0.25);
+    transition: all .2s;
+    margin-top: 6px;
 }
 
 .login-btn:hover {
-    background: #1d4ed8;
+    background: #1256c3;
+    transform: translateY(-1px);
 }
 
 .login-btn:active {
@@ -150,17 +163,17 @@ body {
 ========================================== */
 
 @media (max-width: 480px) {
-
     .login-card {
-        padding: 28px 22px;
+        padding: 24px 18px;
+        border-radius: 18px;
     }
 
     .logo {
-        width: 75px;
-        height: 75px;
+        width: 70px;
+        height: 70px;
     }
 
     .logo-section h1 {
         font-size: 20px;
     }
-}
+}

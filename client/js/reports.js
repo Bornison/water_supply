@@ -175,57 +175,92 @@ async function loadReportTable(){
 }
 
 function renderReportTable(orders){
-
     const tbody = document.querySelector(".report-table table tbody");
+    const cardsContainer = document.getElementById("reportsCardsContainer");
 
     if (!tbody) return;
 
     if (!orders || orders.length === 0) {
-
         tbody.innerHTML = `
-
             <tr>
-
-                <td colspan="4">No report data available.</td>
-
+                <td colspan="4" style="text-align: center; color: #64748b; padding: 20px;">No report data available.</td>
             </tr>
-
         `;
-
+        if (cardsContainer) {
+            cardsContainer.innerHTML = `
+                <div style="text-align: center; color: #64748b; padding: 20px; background: #ffffff; border-radius: 16px; border: 1.5px solid #edf2f7;">
+                    No report data available.
+                </div>
+            `;
+        }
         return;
-
     }
 
     const summary = summarizeRangeData(orders);
+    const todayOrders = orders.filter(order => order.ordered_at && order.ordered_at.startsWith(getTodayDate()));
+    const todayDelivered = todayOrders.filter(order => order.status === "Delivered").length;
+    const todayPending = todayOrders.filter(order => order.status === "Pending").length;
 
+    // 1. Desktop Table Rows
     tbody.innerHTML = `
-
         <tr>
-
-            <td>Last 7 Days</td>
-
+            <td><strong>Last 7 Days</strong></td>
             <td>${summary.total}</td>
-
-            <td>${summary.delivered}</td>
-
-            <td>${summary.pending}</td>
-
+            <td><span style="color: #16a34a; font-weight: 700;">${summary.delivered}</span></td>
+            <td><span style="color: #d97706; font-weight: 700;">${summary.pending}</span></td>
         </tr>
-
         <tr>
-
-            <td>Today</td>
-
-            <td>${orders.filter(order => order.ordered_at && order.ordered_at.startsWith(getTodayDate())).length}</td>
-
-            <td>${orders.filter(order => order.status === "Delivered" && order.ordered_at && order.ordered_at.startsWith(getTodayDate())).length}</td>
-
-            <td>${orders.filter(order => order.status === "Pending" && order.ordered_at && order.ordered_at.startsWith(getTodayDate())).length}</td>
-
+            <td><strong>Today</strong></td>
+            <td>${todayOrders.length}</td>
+            <td><span style="color: #16a34a; font-weight: 700;">${todayDelivered}</span></td>
+            <td><span style="color: #d97706; font-weight: 700;">${todayPending}</span></td>
         </tr>
-
     `;
 
+    // 2. Mobile Cards (Matching Customers HCI Standard)
+    if (cardsContainer) {
+        cardsContainer.innerHTML = `
+            <div class="mobile-card report-card-item">
+                <div class="mobile-card-header">
+                    <div>
+                        <span class="mobile-detail-label">Period</span>
+                        <h3 class="mobile-card-primary-title">Last 7 Days</h3>
+                    </div>
+                    <span class="badge badge-active" style="font-size: 13px; padding: 4px 12px;">${summary.total} Orders</span>
+                </div>
+                <div class="mobile-card-body">
+                    <div class="mobile-detail-cell">
+                        <span class="mobile-detail-label">Delivered</span>
+                        <span class="mobile-detail-value" style="color: #16a34a; font-weight: 700;">✓ ${summary.delivered}</span>
+                    </div>
+                    <div class="mobile-detail-cell">
+                        <span class="mobile-detail-label">Pending / Due</span>
+                        <span class="mobile-detail-value" style="color: #d97706; font-weight: 700;">⏳ ${summary.pending}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mobile-card report-card-item">
+                <div class="mobile-card-header">
+                    <div>
+                        <span class="mobile-detail-label">Period</span>
+                        <h3 class="mobile-card-primary-title">Today</h3>
+                    </div>
+                    <span class="badge badge-active" style="font-size: 13px; padding: 4px 12px;">${todayOrders.length} Orders</span>
+                </div>
+                <div class="mobile-card-body">
+                    <div class="mobile-detail-cell">
+                        <span class="mobile-detail-label">Delivered</span>
+                        <span class="mobile-detail-value" style="color: #16a34a; font-weight: 700;">✓ ${todayDelivered}</span>
+                    </div>
+                    <div class="mobile-detail-cell">
+                        <span class="mobile-detail-label">Pending / Due</span>
+                        <span class="mobile-detail-value" style="color: #d97706; font-weight: 700;">⏳ ${todayPending}</span>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
 }
 
 /* ==========================================

@@ -779,41 +779,93 @@
 }
 
 /* ==========================================
-   RESPONSIVE
+   RESPONSIVE (CUSTOMERS HCI REFINEMENT)
 ========================================== */
 @media(max-width: 768px) {
-    .dashboard {
-        flex-direction: column;
-    }
-    .sidebar {
-        width: 100%;
-        border-right: none;
-        border-bottom: 1px solid #e5e7eb;
-    }
     .main-content {
-        padding: 20px 16px;
+        padding: 16px 14px 28px !important;
+        width: 100% !important;
+        max-width: 100vw !important;
     }
+
+    .topbar {
+        margin-bottom: 16px !important;
+    }
+
     .customer-actions {
         flex-direction: column;
         align-items: stretch;
+        gap: 12px;
+        margin-bottom: 16px;
     }
+
     .customer-actions input {
-        max-width: 100%;
+        max-width: 100% !important;
+        width: 100% !important;
+        height: 46px;
     }
+
+    .customer-actions button {
+        width: 100% !important;
+        min-height: 48px;
+        justify-content: center;
+    }
+
     .customer-card {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 16px;
+        padding: 16px 16px;
+        border-radius: 16px;
     }
+
+    .customer-display-name {
+        font-size: 16.5px;
+    }
+
+    .customer-details-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px 12px;
+    }
+
     .customer-actions-btn {
         width: 100%;
     }
-    .customer-actions-btn button {
-        flex: 1;
+
+    .view-btn {
+        width: 100%;
+        min-height: 44px;
+        justify-content: center;
     }
-    .topbar {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
+
+    .qr-sticker-card {
+        width: 100%;
+        max-width: 320px;
+        padding: 22px 18px 0;
+        border-radius: 20px;
+    }
+
+    .sticker-heading h2 {
+        font-size: 20px;
+    }
+
+    .sticker-heading h1 {
+        font-size: 26px;
+        margin-bottom: 12px;
+    }
+
+    .sticker-qr-box {
+        width: 150px;
+        height: 150px;
+    }
+
+    .sticker-phone-number {
+        font-size: 18px;
+    }
+
+    .sticker-actions {
+        width: 100%;
+        max-width: 320px;
+    }
+
+    .btn-download-qr {
+        min-height: 48px;
     }
 }

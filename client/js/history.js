@@ -151,6 +151,7 @@ function applyFiltersAndRender() {
  */
 function renderHistoryTable(orders) {
     const tableBody = document.getElementById("historyTableBody");
+    const cardsContainer = document.getElementById("historyCardsContainer");
     const messageEl = document.getElementById("historyMessage");
     const counterEl = document.getElementById("historyCounter");
 
@@ -162,6 +163,7 @@ function renderHistoryTable(orders) {
 
     if (!orders || orders.length === 0) {
         tableBody.innerHTML = "";
+        if (cardsContainer) cardsContainer.innerHTML = "";
         if (messageEl) {
             messageEl.style.display = "block";
             messageEl.textContent = "No orders match the selected filters.";
@@ -173,6 +175,7 @@ function renderHistoryTable(orders) {
         messageEl.style.display = "none";
     }
 
+    // 1. Desktop Table Rows
     tableBody.innerHTML = orders.map(order => {
         const status = order.status || "Pending";
         const quantity = order.quantity ?? "-";
@@ -195,6 +198,65 @@ function renderHistoryTable(orders) {
             </tr>
         `;
     }).join("");
+
+    // 2. Mobile Cards (Matching Customers HCI Standard)
+    if (cardsContainer) {
+        cardsContainer.innerHTML = orders.map(order => {
+            const status = order.status || "Pending";
+            const quantity = order.quantity ?? "-";
+            const orderedAt = order.ordered_at ? formatDateTime(order.ordered_at) : "-";
+            const deliveredAt = order.delivered_at ? formatDateTime(order.delivered_at) : "—";
+            const address = order.address || "-";
+            const phone = order.phone || "-";
+
+            return `
+                <div class="mobile-card history-card-item">
+                    <div class="mobile-card-header">
+                        <div class="mobile-card-title-group">
+                            <div class="mobile-card-avatar">📜</div>
+                            <div>
+                                <h3 class="mobile-card-primary-title">${escapeHtml(order.name || order.customer_name || "Customer")}</h3>
+                                <span class="mobile-card-subtitle" style="font-family: monospace; font-weight: 700; color: #1d4ed8;">${escapeHtml(order.order_number || `#ORD${String(order.id).padStart(6, '0')}`)}</span>
+                            </div>
+                        </div>
+                        <span class="status-badge ${getStatusBadgeClass(status)}">${status}</span>
+                    </div>
+
+                    <div class="mobile-card-body">
+                        <div class="mobile-detail-cell">
+                            <span class="mobile-detail-label">Products</span>
+                            <span class="mobile-detail-value">${escapeHtml(order.product || order.remarks || "Water Jar")}</span>
+                        </div>
+                        <div class="mobile-detail-cell">
+                            <span class="mobile-detail-label">Quantity</span>
+                            <span class="mobile-detail-value" style="font-weight: 700;">${quantity}</span>
+                        </div>
+                        <div class="mobile-detail-cell">
+                            <span class="mobile-detail-label">Phone</span>
+                            <span class="mobile-detail-value">
+                                <a href="tel:${escapeHtml(phone)}" style="color: var(--primary); text-decoration: underline;">
+                                    📞 ${escapeHtml(phone)}
+                                </a>
+                            </span>
+                        </div>
+                        <div class="mobile-detail-cell">
+                            <span class="mobile-detail-label">Ordered Date</span>
+                            <span class="mobile-detail-value">${orderedAt}</span>
+                        </div>
+                        ${deliveredAt && deliveredAt !== "—" ? `
+                        <div class="mobile-detail-cell">
+                            <span class="mobile-detail-label">Delivered At</span>
+                            <span class="mobile-detail-value" style="color: #16a34a; font-weight: 600;">${deliveredAt}</span>
+                        </div>` : ''}
+                        <div class="mobile-detail-cell" style="grid-column: span 2;">
+                            <span class="mobile-detail-label">Delivery Address</span>
+                            <span class="mobile-detail-value">${escapeHtml(address)}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }).join("");
+    }
 }
 
 function formatDateTime(dateStr) {

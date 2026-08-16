@@ -132,17 +132,55 @@ function requireAuth() {
 }
 
 /* ==========================================
-   LOGOUT
+   LOGOUT & LOGOUT CONFIRMATION
 ========================================== */
 
+function confirmLogout() {
+    let modal = document.getElementById("authLogoutModal");
+
+    if (!modal) {
+        modal = document.createElement("div");
+        modal.id = "authLogoutModal";
+        modal.className = "logout-modal-backdrop";
+        modal.innerHTML = `
+            <div class="logout-modal-card">
+                <div class="logout-modal-header">
+                    <div class="logout-modal-icon">🚪</div>
+                    <div>
+                        <h3>Log Out</h3>
+                        <p>Are you sure you want to log out?</p>
+                    </div>
+                </div>
+                <div class="logout-modal-actions">
+                    <button type="button" class="btn-cancel-logout" id="cancelLogoutBtn">Cancel</button>
+                    <button type="button" class="btn-confirm-logout" id="confirmLogoutBtn">Log Out</button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modal);
+
+        document.getElementById("cancelLogoutBtn").addEventListener("click", () => {
+            modal.classList.remove("active");
+        });
+
+        document.getElementById("confirmLogoutBtn").addEventListener("click", () => {
+            logout();
+        });
+
+        modal.addEventListener("click", (e) => {
+            if (e.target === modal) {
+                modal.classList.remove("active");
+            }
+        });
+    }
+
+    modal.classList.add("active");
+}
+
 function logout() {
-
     localStorage.removeItem("token");
-
     localStorage.removeItem("user");
-
     window.location.replace("login.html");
-
 }
 
 /* ==========================================

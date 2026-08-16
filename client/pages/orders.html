@@ -126,7 +126,8 @@
 
                 <p class="orders-message" id="ordersMessage">Loading orders...</p>
 
-                <div class="table-responsive">
+                <!-- Desktop Table View (>= 769px) -->
+                <div class="table-responsive desktop-view-only">
 
                     <table>
 
@@ -153,6 +154,9 @@
                     </table>
 
                 </div>
+
+                <!-- Mobile Cards View (<= 768px) -->
+                <div class="mobile-view-only" id="ordersCardsContainer"></div>
 
             </section>
 

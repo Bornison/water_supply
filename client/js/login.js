@@ -33,99 +33,57 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     /* ===============================
-       LOGIN
+       LOGIN (EXACT CASE-SENSITIVE)
     =============================== */
-
     loginForm.addEventListener("submit", async (e) => {
-
         e.preventDefault();
 
-        const username = document
-            .getElementById("username")
-            .value
-            .trim();
-
-        const password = passwordInput.value.trim();
+        // Exact input value preserved without trimming or altering
+        const username = document.getElementById("username").value;
+        const password = passwordInput.value;
 
         if (!username || !password) {
-
-            alert("Please enter username and password.");
-
+            alert("Invalid username or password.");
             return;
-
         }
 
         const submitButton = loginForm.querySelector("button[type='submit']");
         submitButton.disabled = true;
+        submitButton.textContent = "Logging in...";
 
         try {
-
             const response = await fetch(
-
                 `${window.location.port === "5500" ? "http://localhost:5000" : window.location.origin}/api/auth/login`,
-
                 {
-
                     method: "POST",
-
                     headers: {
-
                         "Content-Type": "application/json"
-
                     },
-
                     body: JSON.stringify({
-
                         username,
-
                         password
-
                     })
-
                 }
-
             );
 
             const data = await response.json();
 
-            if (response.status === 401 || response.status === 403) {
-
-                alert(data.message || "Invalid username or password.");
-
-                return;
-
-            }
-
             if (!response.ok || !data.success) {
-
-                alert(data.message || "Login failed. Please try again.");
-
+                alert(data.message || "Invalid username or password.");
                 return;
-
             }
 
             localStorage.setItem("token", data.token);
-
             localStorage.setItem("user", JSON.stringify(data.user));
 
             window.location.href = "dashboard.html";
-
-        }
-
-        catch (error) {
-
+        } catch (error) {
             console.error(error);
-
             alert("Unable to connect to the server. Please try again later.");
-
-        }
-
-        finally {
-
+        } finally {
             submitButton.disabled = false;
-
+            submitButton.textContent = "Login";
         }
-
     });
 
 });

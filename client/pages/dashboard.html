@@ -88,116 +88,82 @@
 
             <!-- Cards -->
 
+            <!-- Cards -->
             <section class="cards">
-
-                <div class="card">
-
+                <div class="card" onclick="window.location.href='orders.html'" style="cursor: pointer;">
                     <h3>Today's Orders</h3>
-
                     <h2 id="todayOrders">
                         0
                     </h2>
-
                 </div>
 
-                <div class="card">
-
+                <div class="card" onclick="window.location.href='orders.html'" style="cursor: pointer;">
                     <h3>Pending</h3>
-
                     <h2 id="pendingOrders">
                         0
                     </h2>
-
                 </div>
 
-                <div class="card">
-
+                <div class="card" onclick="window.location.href='orders.html'" style="cursor: pointer;">
                     <h3>Delivered</h3>
-
                     <h2 id="completedOrders">
                         0
                     </h2>
-
                 </div>
 
-                <div class="card">
-
+                <div class="card" onclick="window.location.href='customers.html'" style="cursor: pointer;">
                     <h3>Customers</h3>
-
                     <h2 id="customers">
                         0
                     </h2>
-
                 </div>
-
             </section>
 
             <!-- Recent Orders -->
-
             <section class="recent-orders card">
-
-                <div class="section-title">
-
+                <div class="section-title" style="display: flex; justify-content: space-between; align-items: center;">
                     <h2>
                         Recent Orders
                     </h2>
-
+                    <button type="button" onclick="window.location.href='orders.html'" style="background: none; border: none; color: var(--primary); font-weight: 700; font-size: 14px; cursor: pointer; display: flex; align-items: center; gap: 4px;">
+                        View All →
+                    </button>
                 </div>
 
-                <div class="table-responsive">
+                <!-- Desktop Table View (>= 769px) -->
+                <div class="table-responsive desktop-view-only">
                     <table>
-
                         <thead>
-
                             <tr>
-
                                 <th>Customer</th>
-
                                 <th>Product</th>
-
-                                <th>Qty</th>
-
+                                <th>Phone</th>
                                 <th>Status</th>
-
                             </tr>
-
                         </thead>
-
                         <tbody id="recentOrdersBody">
-
                             <tr>
                                 <td colspan="4" style="text-align:center; color:#64748b;">Loading recent orders...</td>
                             </tr>
-
                         </tbody>
-
                     </table>
                 </div>
 
+                <!-- Mobile Cards View (<= 768px) -->
+                <div class="mobile-view-only" id="recentOrdersCards"></div>
             </section>
 
             <!-- Quick Actions -->
-
             <section class="quick-actions">
-
-                <button id="registerBtn">
-
-                    Register Customer
-
+                <button type="button" id="registerBtn" onclick="window.location.href='register-customer.html'">
+                    + Register Customer
                 </button>
-
-                <button id="ordersBtn">
-
-                    Orders
-
+                <button type="button" id="ordersBtn" onclick="window.location.href='orders.html'">
+                    📦 Orders
                 </button>
-
-                <button id="reportsBtn">
-
-                    Reports
-
+                <button type="button" id="reportsBtn" onclick="window.location.href='reports.html'">
+                    📊 Reports
                 </button>
-
             </section>
 
         </main>

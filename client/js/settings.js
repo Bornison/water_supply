@@ -508,6 +508,7 @@ async function loadProducts() {
 
 function renderProducts(products) {
     const tableBody = document.getElementById("productTable");
+    const cardsContainer = document.getElementById("productCardsContainer");
     if (!tableBody) return;
 
     if (!products || products.length === 0) {
@@ -516,9 +517,17 @@ function renderProducts(products) {
                 <td colspan="5" style="text-align: center; color: #64748b; padding: 24px;">No products found. Click "+ Add Product" to create one.</td>
             </tr>
         `;
+        if (cardsContainer) {
+            cardsContainer.innerHTML = `
+                <div style="text-align: center; color: #64748b; padding: 24px; background: #ffffff; border-radius: 16px; border: 1.5px solid #edf2f7;">
+                    No products found. Tap "+ Add Product" to create one.
+                </div>
+            `;
+        }
         return;
     }
 
+    // 1. Desktop Table Rows
     tableBody.innerHTML = products.map(product => {
         const isActive = product.active !== false;
         return `
@@ -542,6 +551,38 @@ function renderProducts(products) {
             </tr>
         `;
     }).join("");
+
+    // 2. Mobile Cards (Matching Customers Page HCI)
+    if (cardsContainer) {
+        cardsContainer.innerHTML = products.map(product => {
+            const isActive = product.active !== false;
+            return `
+                <div class="mobile-card product-card-item" data-product-id="${product.id}" data-product-name="${escapeHtml(product.product_name)}" data-product-volume="${product.volume}" data-product-unit="${escapeHtml(product.unit)}" data-product-active="${isActive}">
+                    <div class="mobile-card-header">
+                        <div class="mobile-card-title-group">
+                            <div class="mobile-card-avatar" style="background: #e0f2fe; color: #0284c7;">💧</div>
+                            <div>
+                                <h3 class="mobile-card-primary-title">${escapeHtml(product.product_name || "-")}</h3>
+                                <span class="mobile-card-subtitle">${product.volume ?? "-"} ${escapeHtml(product.unit || "")}</span>
+                            </div>
+                        </div>
+                        <span class="badge ${isActive ? 'badge-active' : 'badge-inactive'}">
+                            ${isActive ? '● Active' : '○ Inactive'}
+                        </span>
+                    </div>
+
+                    <div class="mobile-card-actions">
+                        <button class="btn-secondary-touch edit-btn" data-product-id="${product.id}" type="button">
+                            ✏️ Edit Product
+                        </button>
+                        <button class="btn-secondary-touch status-btn ${isActive ? 'btn-disable' : 'btn-enable'}" data-product-id="${product.id}" data-product-active="${isActive}" type="button">
+                            ${isActive ? 'Disable' : 'Enable'}
+                        </button>
+                    </div>
+                </div>
+            `;
+        }).join("");
+    }
 
     bindEditProductButtons();
     bindToggleProductButtons();
@@ -629,17 +670,17 @@ function bindAddProductModal() {
    EDIT PRODUCT MODAL (WITH DELETE)
 ========================================== */
 function bindEditProductButtons() {
-    const buttons = document.querySelectorAll("#productTable .edit-btn");
+    const buttons = document.querySelectorAll(".edit-btn");
 
     buttons.forEach(button => {
         button.addEventListener("click", () => {
-            const row = button.closest("tr");
-            if (!row) return;
+            const container = button.closest("tr, .product-card-item");
+            if (!container) return;
 
-            const productId = row.dataset.productId;
-            const productName = row.dataset.productName;
-            const productVolume = row.dataset.productVolume;
-            const productUnit = row.dataset.productUnit;
+            const productId = container.dataset.productId || button.dataset.productId;
+            const productName = container.dataset.productName;
+            const productVolume = container.dataset.productVolume;
+            const productUnit = container.dataset.productUnit;
 
             openEditProductModal({
                 id: productId,
@@ -791,7 +832,7 @@ function bindEditProductModal() {
    ENABLE / DISABLE TOGGLE
 ========================================== */
 function bindToggleProductButtons() {
-    const buttons = document.querySelectorAll("#productTable .status-btn");
+    const buttons = document.querySelectorAll("#productTable .status-btn, #productCardsContainer .status-btn");
 
     buttons.forEach(button => {
         button.addEventListener("click", async () => {

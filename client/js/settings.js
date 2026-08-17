@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 let currentSettings = {};
 let currentAvatarBase64 = null;
+let avatarChanged = false;
 let isConfirmingProductDelete = false;
 
 /* ==========================================
@@ -104,18 +105,77 @@ function bindAvatarUpload() {
             const file = e.target.files[0];
             if (!file) return;
 
+            if (!file.type.startsWith("image/")) {
+                alert("Please choose a valid image.");
+                fileInput.value = "";
+                return;
+            }
+
             if (file.size > 2 * 1024 * 1024) {
                 alert("Please choose an image under 2MB.");
+                fileInput.value = "";
                 return;
             }
 
             const reader = new FileReader();
+
             reader.onload = (event) => {
-                const base64 = event.target.result;
-                currentAvatarBase64 = base64;
-                if (avatarPreview) avatarPreview.src = base64;
-                if (topbarImg) topbarImg.src = base64;
+                const img = new Image();
+
+                img.onload = () => {
+                    const MAX_SIZE = 500;
+
+                    let width = img.width;
+                    let height = img.height;
+
+                    if (width > MAX_SIZE || height > MAX_SIZE) {
+                        if (width > height) {
+                            height = Math.round((height * MAX_SIZE) / width);
+                            width = MAX_SIZE;
+                        } else {
+                            width = Math.round((width * MAX_SIZE) / height);
+                            height = MAX_SIZE;
+                        }
+                    }
+
+                    const canvas = document.createElement("canvas");
+                    canvas.width = width;
+                    canvas.height = height;
+
+                    const ctx = canvas.getContext("2d");
+
+                    ctx.drawImage(img, 0, 0, width, height);
+
+                    const compressedBase64 = canvas.toDataURL(
+                        "image/jpeg",
+                        0.75
+                    );
+
+                    currentAvatarBase64 = compressedBase64;
+			avatarChanged = true;
+
+                    if (avatarPreview) {
+                        avatarPreview.src = compressedBase64;
+                    }
+
+                    if (topbarImg) {
+                        topbarImg.src = compressedBase64;
+                    }
+                };
+
+                img.onerror = () => {
+                    alert("Unable to process this image.");
+                    fileInput.value = "";
+                };
+
+                img.src = event.target.result;
             };
+
+            reader.onerror = () => {
+                alert("Unable to read the selected image.");
+                fileInput.value = "";
+            };
+
             reader.readAsDataURL(file);
         });
     }
@@ -123,10 +183,21 @@ function bindAvatarUpload() {
     if (resetBtn) {
         resetBtn.addEventListener("click", () => {
             currentAvatarBase64 = "";
+		avatarChanged = true;
+
             const defaultAvatar = "../assets/images/profile.png";
-            if (avatarPreview) avatarPreview.src = defaultAvatar;
-            if (topbarImg) topbarImg.src = defaultAvatar;
-            if (fileInput) fileInput.value = "";
+
+            if (avatarPreview) {
+                avatarPreview.src = defaultAvatar;
+            }
+
+            if (topbarImg) {
+                topbarImg.src = defaultAvatar;
+            }
+
+            if (fileInput) {
+                fileInput.value = "";
+            }
         });
     }
 }
@@ -155,11 +226,14 @@ function bindProfileForm() {
         submitBtn.innerHTML = `<span>Saving...</span>`;
 
         const payload = {
-            owner_name: ownerName,
-            username: username,
-            phone: phone,
-            profile_picture: currentAvatarBase64 || ""
-        };
+    owner_name: ownerName,
+    username: username,
+    phone: phone
+};
+
+if (avatarChanged) {
+    payload.profile_picture = currentAvatarBase64 || "";
+}
 
         try {
             const data = await authPut("/api/settings/owner", payload);
@@ -173,6 +247,7 @@ function bindProfileForm() {
             alert(data.message || "Profile updated successfully.");
             currentSettings = { ...currentSettings, ...payload, owner_phone: phone };
             displaySettings(currentSettings);
+		displaySettings(currentSettings);
 
             // Update global localStorage user and sync UI across all pages
             const currentUser = (typeof getUser === "function" ? getUser() : {}) || {};
